@@ -20,6 +20,11 @@ public interface IGameModel
     public int getNextPlayer();
 
     /**
+     * @return
+     */
+
+    public int getPlayer();
+    /**
      * Attempts to let the current player play at the given coordinates. If the
      * attempt is succesfull the current player has ended his turn and it is the
      * next players turn.
@@ -29,6 +34,7 @@ public interface IGameModel
      * @return true if the move is accepted, otherwise false. If gameOver ==
      * true this method will always return false.
      */
+
     public boolean play(int col, int row);
 
     /**
