@@ -84,7 +84,7 @@ public class TicTacViewController implements Initializable
 
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer());
+        lblPlayer.setText(TXT_PLAYER + game.getPlayer());
     }
 
     private void displayWinner(int winner)
