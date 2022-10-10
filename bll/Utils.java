@@ -7,29 +7,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.gui.controller.TicTacViewController;
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class Utils {
+    //TODO: Custom exceptions
     public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName) {
         Parent root = null;
 
-        if (!playerOneName.isEmpty() && !playerTwoName.isEmpty()) {
+        if (playerOneName != null && playerTwoName != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
                 root = loader.load();
                 TicTacViewController pc = loader.getController();
                 pc.setNames(playerOneName, playerTwoName);
             } catch (IOException e) {
-                e.printStackTrace();
-                // Custom err handeling model
+                throw new RuntimeException(e);
             }
         } else {
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(Utils.class.getResource(fxmlFile)));
+                root = FXMLLoader.load(Utils.class.getResource(fxmlFile)); // leave this one when we return unfortunately null values
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

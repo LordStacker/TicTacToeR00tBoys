@@ -106,7 +106,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="btnNewGame1" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="25.0" prefWidth="78.0" text="I give up">
+                              <Button fx:id="baseWindowAction" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="25.0" prefWidth="78.0" text="I give up">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>

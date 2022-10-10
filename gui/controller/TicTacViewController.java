@@ -5,6 +5,7 @@
  */
 package tictactoe.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -87,7 +88,8 @@ public class TicTacViewController implements Initializable
     {
         game = new GameBoard();
         setPlayer();
-        baseWindowAction.setOnAction(event -> Utils.changeScene(event,"../"));
+        baseWindowAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null));
     }
 
     private void setPlayer()
