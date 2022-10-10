@@ -53,12 +53,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="test" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
+            <Button fx:id="rulesAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Creators" />
+            <Button fx:id="creatorsAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Creators" />
          </children>
       </HBox>
    </bottom>

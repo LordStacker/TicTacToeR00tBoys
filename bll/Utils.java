@@ -11,9 +11,10 @@ import java.io.IOException;
 
 public class Utils {
     //TODO: Custom exceptions
-    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName) {
+    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName,boolean isGameplayAction) {
         Parent root = null;
-
+        Stage stage = null;
+        // TODO : we can still pass empty "" string :(
         if (playerOneName != null && playerTwoName != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
@@ -30,12 +31,15 @@ public class Utils {
                 throw new RuntimeException(e);
             }
         }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if(isGameplayAction){
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        }else {
+            stage = new Stage();
+        }
         stage.setTitle("Tic Tac Toe");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
     }
-
 
 }

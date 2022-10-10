@@ -89,7 +89,7 @@ public class TicTacViewController implements Initializable
         game = new GameBoard();
         setPlayer();
         baseWindowAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null));
+                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
     }
 
     private void setPlayer()

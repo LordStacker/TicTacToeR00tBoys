@@ -8,14 +8,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BaseWindowController implements Initializable {
-
+    @FXML
+    private Button rulesAction;
+    @FXML
+    private Button creatorsAction;
     @FXML
     private Button playerVPlayer;
 
+    // TODO : Creators and rules fxml players ui are just templates needs to be done
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerVPlayer.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null));
+                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true));
+        creatorsAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false));
+        rulesAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/RulesView.fxml",null,null,false));
     }
-
 }
