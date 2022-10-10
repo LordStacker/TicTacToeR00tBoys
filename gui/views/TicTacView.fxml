@@ -87,7 +87,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="0">
+                        <Label fx:id="Xscore" text="0">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -120,7 +120,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="0">
+                        <Label fx:id="Oscore" text="0">
                            <font>
                               <Font size="27.0" />
                            </font>

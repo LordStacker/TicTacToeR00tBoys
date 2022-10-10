@@ -56,4 +56,26 @@ public interface IGameModel
      * Resets the game to a new game state.
      */
     public void newGame();
+
+    /**
+     * void
+     * Cleans the board
+     */
+    public void resetBoard();
+	/*
+	*
+	*TODO
+	*/
+
+    public String getWonGamesByX();
+	/*
+	*
+	*TODO
+	*/
+
+   	public String getWonGamesByO();
+	/*
+	*
+	*TODO
+	*/
 }

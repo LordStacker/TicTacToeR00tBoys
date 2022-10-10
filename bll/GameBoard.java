@@ -5,11 +5,20 @@
  */
 package tictactoe.bll;
 
+import tictactoe.bll.IGameModel;
+
 /**
  * @author Stegger
  */
 public class GameBoard implements IGameModel {
     private int player = 0;
+    private char[][] board =new char[3][3];
+    private int roundCount=0;
+    private char token=' ';
+
+    private int wonGamesByX=0;
+    private int wonGamesByO=0;
+
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -40,12 +49,50 @@ public class GameBoard implements IGameModel {
      * this method will always return false.
      */
     public boolean play(int col, int row) {
-        //TODO : Implement this method
-        return true;
+
+        //Marking current field if it is empty
+        if (this.board[col][row]==' ') {
+            this.board[col][row]=this. player == 0 ? 'X' : 'O';
+           this.roundCount++;
+            return true;
+        }
+
+        return false;
     }
 
     public boolean isGameOver() {
-        //TODO Implement this method
+
+
+        //Check if there is winning row
+        if (checkWinningRows(3)!=' '){
+            this.token=checkWinningRows(3);
+            this.roundCount=0;
+            return true;
+
+        }
+
+        //Check if there is winning collum
+        if (checkWinningColls(3)!=' '){
+            this.token=checkWinningColls(3);
+            this.roundCount=0;
+            return true;
+        }
+
+        //Check if there is winning diagonal
+        if (checkWinningDiagonals()!=' '){
+            this.token=checkWinningDiagonals();
+            this.roundCount=0;
+            return true;
+        }
+
+
+        //Check if there is no free fields
+        if (this.roundCount==9){
+            this.roundCount=0;
+            return true;
+        }
+
+
         return false;
     }
 
@@ -55,8 +102,13 @@ public class GameBoard implements IGameModel {
      * @return int id of winner, or -1 if draw.
      */
     public int getWinner() {
-        //TODO Implement this method
-        return -1;
+        if (this.token=='X'){
+            this.wonGamesByX++;
+            return 1;
+        } else {
+            this.wonGamesByO++;
+            return 0;
+        }
     }
 
     /**
@@ -65,5 +117,66 @@ public class GameBoard implements IGameModel {
     public void newGame() {
         //TODO Implement this method
     }
+
+    //Cleans current matrix
+    public void resetBoard(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.board[i][j]=' ';
+            }
+
+        }
+    }
+
+
+    private char checkWinningRows(int row){
+        for (int i = 0; i < row; i++) {
+            if (this.board[i][0] == this.board[i][1]
+                    && this.board[i][0] == this.board[i][2]
+                    &&this.board[i][0] !=' '){
+
+                return this.board[i][0];
+            }
+
+        }
+        return ' ';
+    }
+
+    private char checkWinningColls(int coll){
+        for (int i = 0; i < coll; i++) {
+            if (this.board[0][i] == this.board[1][i]
+                    && this.board[0][i] == this.board[2][i]
+                    &&this.board[0][i] !=' '){
+                return this.board[0][i];
+            }
+
+        }
+        return ' ';
+    }
+
+    private char checkWinningDiagonals(){
+        if (this.board[0][0] == this.board[1][1]
+                && this.board[0][0] == this.board[2][2]
+                && this.board[0][0]!=' '){
+            return this.board[0][0];
+        }else if(this.board[0][2] == this.board[1][1]
+                &&this.board[0][2] == this.board[2][0]
+                &&this.board[0][2] != ' '){
+            return this.board[0][2];
+        }
+
+        return ' ';
+    }
+
+    public String  getWonGamesByX(){
+        String pivot=""+ this.wonGamesByX;
+        return pivot;
+    }
+
+    public String  getWonGamesByO(){
+        String pivot=""+ this.wonGamesByO;
+        return pivot;
+    }
+
 
 }

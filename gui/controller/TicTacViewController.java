@@ -7,6 +7,7 @@ package tictactoe.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,11 @@ import tictactoe.bll.Utils;
 public class TicTacViewController implements Initializable
 {
     @FXML
+    private Label Xscore;
+
+    @FXML
+    private Label Oscore;
+    @FXML
     private Button baseWindowAction;
     @FXML
     private Label turnLabel;
@@ -45,7 +51,6 @@ public class TicTacViewController implements Initializable
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
-    private BaseWindowController baseController;
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -56,16 +61,20 @@ public class TicTacViewController implements Initializable
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            int player = game.getNextPlayer();
             if (game.play(c, r))
             {
                 if (game.isGameOver())
                 {
                     int winner = game.getWinner();
                     displayWinner(winner);
+                    game.resetBoard();
+                    clearBoard();
+                    Xscore.setText(game.getWonGamesByX());
+                    Oscore.setText(game.getWonGamesByO());
                 }
                 else
                 {
+                    int player = game.getNextPlayer();
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
                     btn.setText(xOrO);
@@ -86,19 +95,19 @@ public class TicTacViewController implements Initializable
         clearBoard();
     }
 
-    public void setParentController(BaseWindowController baseWindow)throws IOException {
+    /*public void setParentController(BaseWindowController baseWindow)throws IOException {
         this.baseController=baseWindow;
 
-    }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         game = new GameBoard();
         setPlayer();
-        baseWindowAction.setOnAction(this::sendScoreToTheBoard);
-//        baseWindowAction.setOnAction(event ->
-//                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
+        game.resetBoard();
+        baseWindowAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
     }
 
     private void setPlayer()
@@ -144,7 +153,7 @@ public class TicTacViewController implements Initializable
         Player player = new Player(winnerName,finalScore);
 
         // send player to the main board ?
-        baseController.receiveData(player);
+        //baseController.receiveData(player);
 
         Utils.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
 
