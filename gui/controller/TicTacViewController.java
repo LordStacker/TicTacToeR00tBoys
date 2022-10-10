@@ -6,6 +6,7 @@
 package tictactoe.gui.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import tictactoe.bll.GameBoard;
 import tictactoe.bll.IGameModel;
+import tictactoe.bll.Utils;
 
 /**
  *
@@ -23,7 +25,8 @@ import tictactoe.bll.IGameModel;
  */
 public class TicTacViewController implements Initializable
 {
-
+    @FXML
+    private Button baseWindowAction;
     @FXML
     private Label turnLabel;
     @FXML
@@ -84,6 +87,7 @@ public class TicTacViewController implements Initializable
     {
         game = new GameBoard();
         setPlayer();
+        baseWindowAction.setOnAction(event -> Utils.changeScene(event,"../"));
     }
 
     private void setPlayer()
@@ -116,8 +120,8 @@ public class TicTacViewController implements Initializable
         }
     }
 
-    public void setNames(String text, String text1) {
-        lblPlayer.setText(text + " (X) ");
-        lblPlayer2.setText(text1 + " (O) ");
+    public void setNames(String playerOne,String playerTwo) {
+        lblPlayer.setText(playerOne + " (X) ");
+        lblPlayer2.setText(playerTwo + " (O) ");
     }
 }

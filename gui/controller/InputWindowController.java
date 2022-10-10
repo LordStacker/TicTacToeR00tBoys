@@ -10,9 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tictactoe.bll.Players;
+import tictactoe.bll.Utils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -27,34 +31,7 @@ public class InputWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        start_game.setOnAction(this::openSecondWindow);
-    }
-
-    private void openSecondWindow(ActionEvent event){
-        Parent root = null;
-
-        if(!player_one_name.getText().isEmpty() || !player_two_name.getText().isEmpty()){
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/TicTacView.fxml"));
-                root = loader.load();
-                TicTacViewController tc = loader.getController();
-                tc.setNames(player_one_name.getText(),player_two_name.getText());
-            }catch(IOException e){
-                e.printStackTrace();
-                // Custom err handeling model
-            }
-        } else {
-            try{
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../views/TicTacView.fxml")));
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Welcome to Tic Tac Toe");
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
+        start_game.setOnAction(event -> Utils.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),player_two_name.getText()));
     }
 
 }
