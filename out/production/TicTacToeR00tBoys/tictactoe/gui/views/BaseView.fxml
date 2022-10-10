@@ -53,7 +53,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
+            <Button fx:id="test" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

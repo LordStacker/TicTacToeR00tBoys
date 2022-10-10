@@ -56,17 +56,25 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPlayer" text="Nick">
+                        <Label fx:id="lblPlayer" text="Nick (X)">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPlayer" text="Atanas">
+                        <Label fx:id="turnLabel" text="Its X turn">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="lblPlayer2" text="Atanas (O)">
                            <font>
                               <Font size="27.0" />
                            </font>
