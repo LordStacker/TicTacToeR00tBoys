@@ -16,7 +16,7 @@
       <Insets />
    </opaqueInsets>
    <top>
-      <HBox alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="header" alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Tic Tac Toe">
                <font>
@@ -44,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="290.0">
                <children>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Score Board" />
+                  <Button fx:id="scoreBoardAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Score Board" />
                </children>
             </HBox>
          </children>

@@ -1,13 +1,13 @@
 package tictactoe.bll;
 
-public class Players {
+public class Player {
     // private final ObservableList<String> players;
 
     private String name;
 
     private int score;
 
-    public Players(String name, int score) {
+    public Player(String name, int score) {
 
         this.name = name;
         this.score = score;
