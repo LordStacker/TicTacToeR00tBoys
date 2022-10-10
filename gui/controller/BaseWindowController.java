@@ -1,0 +1,72 @@
+package tictactoe.gui.controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import tictactoe.bll.Player;
+import tictactoe.bll.Utils;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class BaseWindowController implements Initializable {
+    @FXML
+    private Button scoreBoardAction;
+    @FXML
+    private Button rulesAction;
+    @FXML
+    private Button creatorsAction;
+    @FXML
+    private Button playerVPlayer;
+
+    private Player currPlayer;
+
+    private List<Player> playerList = new ArrayList<>();
+
+
+    // TODO : Creators and rules fxml players ui are just templates needs to be done
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        playerVPlayer.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true));
+        creatorsAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false));
+        rulesAction.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/RulesView.fxml",null,null,false));
+       scoreBoardAction.setOnAction(this::openScoreBoard);
+    }
+
+    private void openScoreBoard(ActionEvent event) {
+        Parent root = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/ScoreBoardView.fxml"));
+            root = fxmlLoader.load();
+            ScoreWindowController controller = fxmlLoader.getController();
+            controller.setPlayers(playerList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("ScoreBoard");
+        stage.show();
+    }
+
+    public void receiveData(Player player) {
+        this.currPlayer = player;
+
+        if(playerList.isEmpty()){
+            playerList.add(player);
+            System.out.println(player.getName());
+        }
+    }
+}

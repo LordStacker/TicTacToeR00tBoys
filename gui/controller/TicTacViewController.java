@@ -5,6 +5,7 @@
  */
 package tictactoe.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,8 +15,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import tictactoe.bll.GameBoard;
 import tictactoe.bll.IGameModel;
+import tictactoe.bll.Player;
+import tictactoe.bll.Utils;
 
 /**
  *
@@ -23,9 +27,14 @@ import tictactoe.bll.IGameModel;
  */
 public class TicTacViewController implements Initializable
 {
-
+    @FXML
+    private Button baseWindowAction;
+    @FXML
+    private Label turnLabel;
     @FXML
     private Label lblPlayer;
+    @FXML
+    private Label lblPlayer2;
 
     @FXML
     private Button btnNewGame;
@@ -33,8 +42,10 @@ public class TicTacViewController implements Initializable
     @FXML
     private GridPane gridPane;
     
-    private static final String TXT_PLAYER = "Player: ";
+    private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
+
+    private BaseWindowController baseController;
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -75,16 +86,25 @@ public class TicTacViewController implements Initializable
         clearBoard();
     }
 
+    public void setParentController(BaseWindowController baseWindow)throws IOException {
+        this.baseController=baseWindow;
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         game = new GameBoard();
         setPlayer();
+        baseWindowAction.setOnAction(this::sendScoreToTheBoard);
+//        baseWindowAction.setOnAction(event ->
+//                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
     }
 
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getPlayer());
+        String xOrO = game.getPlayer()  == 0 ? "X" : "O";
+        turnLabel.setText(TURN_LABEL + xOrO + " turn ");
     }
 
     private void displayWinner(int winner)
@@ -111,4 +131,22 @@ public class TicTacViewController implements Initializable
         }
     }
 
+    public void setNames(String playerOne,String playerTwo) {
+        lblPlayer.setText(playerOne + " (X) ");
+        lblPlayer2.setText(playerTwo + " (O) ");
+    }
+
+    // Testing sending data back to the main controller
+    private void sendScoreToTheBoard(ActionEvent e){
+        String winnerName = "Anatas";
+        int finalScore = 30;
+
+        Player player = new Player(winnerName,finalScore);
+
+        // send player to the main board ?
+        baseController.receiveData(player);
+
+        Utils.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
+
+    }
 }
