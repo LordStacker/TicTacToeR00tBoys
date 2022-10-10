@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.BaseWindowController">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <top>
+      <HBox alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Tic Tac Toe">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="290.0">
+               <children>
+                  <Button fx:id="playerVPlayer" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Player VS Player" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="290.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Player VS AI" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="290.0">
+               <children>
+                  <Button disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Score Board" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Creators" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

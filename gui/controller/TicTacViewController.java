@@ -111,4 +111,7 @@ public class TicTacViewController implements Initializable
         }
     }
 
+    public void setName(String name) {
+        lblPlayer.setText(name);
+    }
 }
