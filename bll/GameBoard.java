@@ -9,7 +9,7 @@ package tictactoe.bll;
  * @author Stegger
  */
 public class GameBoard implements IGameModel {
-    private int player = 1;
+    private int player = 0;
 
     /**
      * Returns 0 for player 0, 1 for player 1.

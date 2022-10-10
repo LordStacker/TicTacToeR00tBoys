@@ -56,7 +56,7 @@ public class TicTacViewController implements Initializable
                 else
                 {
                     Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? "X" : "O";
+                    String xOrO = player == 1 ? "X" : "O";
                     btn.setText(xOrO);
                     setPlayer();
                 }
