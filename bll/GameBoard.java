@@ -12,13 +12,13 @@ import tictactoe.gui.controller.TicTacViewController;
  * @author Stegger
  */
 public class GameBoard implements IGameModel {
-    private int player = 0;
+    private int player = 0,
+                wonGamesByX=0,
+                wonGamesByO=0,
+                roundCount=0;
     private char[][] board =new char[3][3];
-    private int roundCount=0;
     private char token=' ';
 
-    private int wonGamesByX=0;
-    private int wonGamesByO=0;
 
     public final static int MAX_SCORE = 5;
 
@@ -55,14 +55,12 @@ public class GameBoard implements IGameModel {
      * this method will always return false.
      */
     public boolean play(int col, int row) {
-
         //Marking current field if it is empty
         if (this.board[col][row]==' ') {
             this.board[col][row]=this. player == 0 ? 'X' : 'O';
            this.roundCount++;
             return true;
         }
-
         return false;
     }
 
@@ -107,9 +105,11 @@ public class GameBoard implements IGameModel {
     public int getWinner() {
         if (this.token=='X'){
             this.wonGamesByX++;
+            this.token=' ';
             return 1;
         } if(this.token=='O') {
             this.wonGamesByO++;
+            this.token=' ';
             return 0;
         }
         else {

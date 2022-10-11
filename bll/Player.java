@@ -1,18 +1,15 @@
 package tictactoe.bll;
 
 public class Player {
-    // private final ObservableList<String> players;
 
     private String name;
 
-    private int score;
+    private String finalScore;
 
-    public Player(String name, int score) {
-
+    public Player(String name,String score) {
         this.name = name;
-        this.score = score;
+        this.finalScore = score;
     }
-
 
     public String getName() {
         return name;
@@ -22,11 +19,11 @@ public class Player {
         this.name = name;
     }
 
-    public int getScore() {
-        return score;
+    public String getScore() {
+        return finalScore;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(String score) {
+        this.finalScore = score;
     }
 }

@@ -9,8 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictactoe.bll.Player;
-import tictactoe.bll.Utils;
 
+import tictactoe.bll.Utilities;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,10 +31,12 @@ public class BaseWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerVPlayer.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true));
+                Utilities.changeScene(event,"../gui/views/InputView.fxml",null,null,true));
         creatorsAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false));
+                Utilities.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false));
         rulesAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/RulesView.fxml",null,null,false));
+                Utilities.changeScene(event,"../gui/views/RulesView.fxml",null,null,false));
+        scoreBoardAction.setOnAction(event ->
+                Utilities.changeScene(event,"../gui/views/ScoreBoardView.fxml",null,null,false));
     }
 }
