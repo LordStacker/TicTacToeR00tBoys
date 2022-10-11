@@ -6,11 +6,9 @@
 package tictactoe.bll;
 
 /**
- *
  * @author Stegger
  */
-public interface IGameModel
-{
+public interface IGameModel {
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -24,6 +22,7 @@ public interface IGameModel
      */
 
     public int getPlayer();
+
     /**
      * Attempts to let the current player play at the given coordinates. If the
      * attempt is succesfull the current player has ended his turn and it is the
@@ -41,7 +40,7 @@ public interface IGameModel
      * Tells us if the game has ended either by draw or by meeting the winning
      * condition.
      *
-     * @return true if the game is over, else it will retun false.
+     * @return true if the game is over, else it will return false.
      */
     public boolean isGameOver();
 
@@ -63,17 +62,16 @@ public interface IGameModel
      * Cleans the board
      */
     public void resetBoard();
-	/*
-	*
-	*/
+    /*
+     * String
+     * Return games as string for player X
+     */
 
     public String getWonGamesByX();
-	/*
-	*
-	*/
+    /*
+     * String
+     * Return games as string for player O
+     */
 
-   	public String getWonGamesByO();
-	/*
-	*
-	*/
+    public String getWonGamesByO();
 }
