@@ -5,10 +5,9 @@
  */
 package tictactoe.gui.controller;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import tictactoe.bll.GameBoard;
-import tictactoe.bll.IGameModel;
-import tictactoe.bll.Player;
-import tictactoe.bll.Utils;
+import tictactoe.bll.*;
 
 /**
  *
@@ -50,6 +45,12 @@ public class TicTacViewController implements Initializable
     
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
+
+
+    private final DataStore currPlayer = DataStore.getInstance();
+
+    private Player p1;
+    private Player p2;
 
 
     @FXML
@@ -95,11 +96,6 @@ public class TicTacViewController implements Initializable
         clearBoard();
     }
 
-    /*public void setParentController(BaseWindowController baseWindow)throws IOException {
-        this.baseController=baseWindow;
-
-    }*/
-
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -107,7 +103,8 @@ public class TicTacViewController implements Initializable
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
+                Utilities.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
+        btnNewGame.setOnAction(this::sendScoreToTheBoard);
     }
 
     private void setPlayer()
@@ -140,22 +137,16 @@ public class TicTacViewController implements Initializable
         }
     }
 
-    public void setNames(String playerOne,String playerTwo) {
-        lblPlayer.setText(playerOne + " (X) ");
-        lblPlayer2.setText(playerTwo + " (O) ");
-    }
-
-    // Testing sending data back to the main controller
     private void sendScoreToTheBoard(ActionEvent e){
-        String winnerName = "Anatas";
-        int finalScore = 30;
+        Player p = new Player(lblPlayer2.getText(),"3-5");
+        currPlayer.setPersonList(p);
+        Utilities.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
+    }
+    public void setPlayers(Player p1, Player p2) {
+        this.p1 = p1;
+        this.p2 = p2;
 
-        Player player = new Player(winnerName,finalScore);
-
-        // send player to the main board ?
-        //baseController.receiveData(player);
-
-        Utils.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
-
+        lblPlayer.setText(p1.getName() + " (X) ");
+        lblPlayer2.setText(p2.getName() + " (O) ");
     }
 }

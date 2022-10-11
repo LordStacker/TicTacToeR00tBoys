@@ -9,24 +9,25 @@ import javafx.stage.Stage;
 import tictactoe.gui.controller.TicTacViewController;
 import java.io.IOException;
 
-public class Utils {
+public class Utilities {
     //TODO: Custom exceptions
-    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName,boolean isGameplayAction) {
+    public static void changeScene(ActionEvent event, String fxmlFile, Player p1,Player p2,boolean isGameplayAction) {
         Parent root = null;
         Stage stage = null;
         // TODO : we can still pass empty "" string :(
-        if (playerOneName != null && playerTwoName != null) {
+        if (p1 != null && p2 != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
+                FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fxmlFile));
                 root = loader.load();
                 TicTacViewController pc = loader.getController();
-                pc.setNames(playerOneName, playerTwoName);
+                pc.setPlayers(p1,p2);
+               // pc.setNames(p1.getName(), p2.getName());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
             try {
-                root = FXMLLoader.load(Utils.class.getResource(fxmlFile)); // leave this one when we return unfortunately null values
+                root = FXMLLoader.load(Utilities.class.getResource(fxmlFile)); // leave this one when we return unfortunately null values
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
