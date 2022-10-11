@@ -59,23 +59,21 @@ public interface IGameModel
 
     /**
      * void
+     * Clear all the tiles and Scores
      * Cleans the board
      */
     public void resetBoard();
 	/*
 	*
-	*TODO
 	*/
 
     public String getWonGamesByX();
 	/*
 	*
-	*TODO
 	*/
 
    	public String getWonGamesByO();
 	/*
 	*
-	*TODO
 	*/
 }

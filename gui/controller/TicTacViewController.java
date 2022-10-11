@@ -52,9 +52,6 @@ public class TicTacViewController implements Initializable
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
-    int counterX = 0;
-    int counterY = 0;
-
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -95,6 +92,8 @@ public class TicTacViewController implements Initializable
     private void handleNewGame(ActionEvent event)
     {
         game.newGame();
+        Xscore.setText(game.getWonGamesByX());
+        Oscore.setText(game.getWonGamesByO());
         setPlayer();
         clearBoard();
     }
@@ -124,13 +123,11 @@ public class TicTacViewController implements Initializable
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
-
-
         if (winner == 1){
-            counterX++;
+            GameBoard.counterX++;
         }
         if(winner == 0){
-            counterY++;
+            GameBoard.counterY++;
         }
         switch (winner)
         {
@@ -138,11 +135,14 @@ public class TicTacViewController implements Initializable
                 message = "It's a draw :-(";
                 break;
             default:
-                //message = "Player " + winner + " wins!!!";
                 message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
                 break;
         }
-        if(counterX == 5 || counterY == 5){
+        if(GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE){
+            alert.setContentText(message);
+            alert.show();
+        }
+        if(winner == -1){
             alert.setContentText(message);
             alert.show();
         }
