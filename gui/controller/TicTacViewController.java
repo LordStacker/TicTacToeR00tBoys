@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,57 +25,42 @@ import tictactoe.bll.Player;
 import tictactoe.bll.Utils;
 
 /**
- *
- * @author Stegger
+ * @author r00tBoys
  */
-public class TicTacViewController implements Initializable
-{
+public class TicTacViewController implements Initializable {
     @FXML
-    private Label Xscore;
+    private Label Xscore,
+            Oscore,
+            turnLabel,
+            lblPlayer,
+            lblPlayer2;
 
-    @FXML
-    private Label Oscore;
     @FXML
     private Button baseWindowAction;
-    @FXML
-    private Label turnLabel;
-    @FXML
-    private Label lblPlayer;
-    @FXML
-    private Label lblPlayer2;
-
-    @FXML
-    private Button btnNewGame;
 
     @FXML
     private GridPane gridPane;
-    
     private static final String TURN_LABEL = "It's: ";
+
     private IGameModel game;
 
 
     @FXML
-    private void handleButtonAction(ActionEvent event)
-    {
-        try
-        {
+    private void handleButtonAction(ActionEvent event) {
+        try {
             Integer row = GridPane.getRowIndex((Node) event.getSource());
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            if (game.play(c, r))
-            {
-                if (game.isGameOver())
-                {
+            if (game.play(c, r)) {
+                if (game.isGameOver()) {
                     int winner = game.getWinner();
                     game.resetBoard();
                     clearBoard();
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
                     displayWinner(winner);
-                }
-                else
-                {
+                } else {
                     int player = game.getNextPlayer();
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
@@ -82,15 +68,13 @@ public class TicTacViewController implements Initializable
                     setPlayer();
                 }
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    private void handleNewGame(ActionEvent event)
-    {
+    private void handleNewGame(ActionEvent event) {
         game.newGame();
         Xscore.setText(game.getWonGamesByX());
         Oscore.setText(game.getWonGamesByO());
@@ -98,84 +82,54 @@ public class TicTacViewController implements Initializable
         clearBoard();
     }
 
-    /*public void setParentController(BaseWindowController baseWindow)throws IOException {
-        this.baseController=baseWindow;
-
-    }*/
-
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         game = new GameBoard();
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
+                Utils.changeScene(event, "../gui/views/BaseView.fxml", null, null, true));
     }
 
-    private void setPlayer()
-    {
-        String xOrO = game.getPlayer()  == 0 ? "X" : "O";
+    private void setPlayer() {
+        String xOrO = game.getPlayer() == 0 ? "X" : "O";
         turnLabel.setText(TURN_LABEL + xOrO + " turn ");
     }
 
-    private void displayWinner(int winner)
-    {
+    private void displayWinner(int winner) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
-        if (winner == 1){
+        if (winner == 1) {
             GameBoard.counterX++;
         }
-        if(winner == 0){
+        if (winner == 0) {
             GameBoard.counterY++;
         }
-        switch (winner)
-        {
-            case -1:
-                message = "It's a draw :-(";
-                break;
-            default:
-                message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
-                break;
+        if (winner == -1) {
+            message = "It's a draw :-(";
+        } else {
+            message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
         }
-        if(GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE){
+        if (GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE) {
             alert.setContentText(message);
             alert.show();
         }
-        if(winner == -1){
+        if (winner == -1) {
             alert.setContentText(message);
             alert.show();
         }
-
-
 
     }
 
-    private void clearBoard()
-    {
-        for(Node n : gridPane.getChildren())
-        {
+    private void clearBoard() {
+        for (Node n : gridPane.getChildren()) {
             Button btn = (Button) n;
             btn.setText("");
         }
     }
 
-    public void setNames(String playerOne,String playerTwo) {
+    public void setNames(String playerOne, String playerTwo) {
         lblPlayer.setText(playerOne + " (X) ");
         lblPlayer2.setText(playerTwo + " (O) ");
-    }
-
-    // Testing sending data back to the main controller
-    private void sendScoreToTheBoard(ActionEvent e){
-        String winnerName = "Anatas";
-        int finalScore = 30;
-
-        Player player = new Player(winnerName,finalScore);
-
-        // send player to the main board ?
-        //baseController.receiveData(player);
-
-        Utils.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
-
     }
 }
