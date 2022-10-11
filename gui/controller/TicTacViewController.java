@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -46,6 +47,10 @@ public class TicTacViewController implements Initializable
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
+    private String score;
+
+    private String playerName;
+
 
     private final DataStore currPlayer = DataStore.getInstance();
 
@@ -67,11 +72,11 @@ public class TicTacViewController implements Initializable
                 if (game.isGameOver())
                 {
                     int winner = game.getWinner();
-                    displayWinner(winner);
                     game.resetBoard();
                     clearBoard();
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
+                    displayWinner(winner);
                 }
                 else
                 {
@@ -92,6 +97,8 @@ public class TicTacViewController implements Initializable
     private void handleNewGame(ActionEvent event)
     {
         game.newGame();
+        Xscore.setText(game.getWonGamesByX());
+        Oscore.setText(game.getWonGamesByO());
         setPlayer();
         clearBoard();
     }
@@ -115,17 +122,34 @@ public class TicTacViewController implements Initializable
 
     private void displayWinner(int winner)
     {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
+        if (winner == 1){
+            GameBoard.counterX++;
+        }
+        if(winner == 0){
+            GameBoard.counterY++;
+        }
         switch (winner)
         {
             case -1:
                 message = "It's a draw :-(";
                 break;
             default:
-                message = "Player " + winner + " wins!!!";
+                message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
                 break;
         }
-        lblPlayer.setText(message);
+        if(GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE){
+            alert.setContentText(message);
+            alert.show();
+        }
+        if(winner == -1){
+            alert.setContentText(message);
+            alert.show();
+        }
+
+
+
     }
 
     private void clearBoard()
@@ -138,9 +162,25 @@ public class TicTacViewController implements Initializable
     }
 
     private void sendScoreToTheBoard(ActionEvent e){
-        Player p = new Player(lblPlayer2.getText(),"3-5");
+        if(GameBoard.counterX > GameBoard.counterY){
+            score = Xscore.getText();
+            playerName = lblPlayer.getText();
+        }
+        if(GameBoard.counterX == GameBoard.counterY){
+            score = "TIE";
+            playerName= lblPlayer.getText() + "-" + lblPlayer2.getText();
+        }
+        if(GameBoard.counterX < GameBoard.counterY){
+            score = Oscore.getText();
+            playerName = lblPlayer2.getText();
+
+        }
+
+        Player p = new Player(playerName,score);
         currPlayer.setPersonList(p);
         Utilities.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
+        GameBoard.counterY = 0;
+        GameBoard.counterX = 0;
     }
     public void setPlayers(Player p1, Player p2) {
         this.p1 = p1;
