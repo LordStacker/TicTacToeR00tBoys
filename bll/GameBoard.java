@@ -6,6 +6,7 @@
 package tictactoe.bll;
 
 import tictactoe.bll.IGameModel;
+import tictactoe.gui.controller.TicTacViewController;
 
 /**
  * @author Stegger
@@ -18,6 +19,11 @@ public class GameBoard implements IGameModel {
 
     private int wonGamesByX=0;
     private int wonGamesByO=0;
+
+    public final static int MAX_SCORE = 5;
+
+    public static int counterX = 0;
+    public static int counterY = 0;
 
 
     /**
@@ -62,7 +68,6 @@ public class GameBoard implements IGameModel {
 
     public boolean isGameOver() {
 
-
         //Check if there is winning row
         if (checkWinningRows(3)!=' '){
             this.token=checkWinningRows(3);
@@ -91,8 +96,6 @@ public class GameBoard implements IGameModel {
             this.roundCount=0;
             return true;
         }
-
-
         return false;
     }
 
@@ -105,9 +108,12 @@ public class GameBoard implements IGameModel {
         if (this.token=='X'){
             this.wonGamesByX++;
             return 1;
-        } else {
+        } if(this.token=='O') {
             this.wonGamesByO++;
             return 0;
+        }
+        else {
+            return -1;
         }
     }
 
@@ -115,7 +121,14 @@ public class GameBoard implements IGameModel {
      * Resets the game to a new game state.
      */
     public void newGame() {
-        //TODO Implement this method
+        resetBoard();
+        player = 0;
+        roundCount = 0;
+        wonGamesByX = 0;
+        wonGamesByO = 0;
+        counterX = 0;
+        counterY = 0;
+
     }
 
     //Cleans current matrix
