@@ -52,6 +52,9 @@ public class TicTacViewController implements Initializable
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
+    int counterX = 0;
+    int counterY = 0;
+
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -121,18 +124,14 @@ public class TicTacViewController implements Initializable
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
-        /*
-        int counterX = 0;
-        int counterY = 0;
+
+
         if (winner == 1){
             counterX++;
         }
         if(winner == 0){
             counterY++;
         }
-        System.out.println(counterX);
-        System.out.println(counterY);
-        */
         switch (winner)
         {
             case -1:
@@ -143,8 +142,11 @@ public class TicTacViewController implements Initializable
                 message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
                 break;
         }
-        alert.setContentText(message);
-        alert.show();
+        if(counterX == 5 || counterY == 5){
+            alert.setContentText(message);
+            alert.show();
+        }
+
 
 
     }
