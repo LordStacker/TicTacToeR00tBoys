@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -66,11 +67,11 @@ public class TicTacViewController implements Initializable
                 if (game.isGameOver())
                 {
                     int winner = game.getWinner();
-                    displayWinner(winner);
                     game.resetBoard();
                     clearBoard();
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
+                    displayWinner(winner);
                 }
                 else
                 {
@@ -118,17 +119,34 @@ public class TicTacViewController implements Initializable
 
     private void displayWinner(int winner)
     {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
+        /*
+        int counterX = 0;
+        int counterY = 0;
+        if (winner == 1){
+            counterX++;
+        }
+        if(winner == 0){
+            counterY++;
+        }
+        System.out.println(counterX);
+        System.out.println(counterY);
+        */
         switch (winner)
         {
             case -1:
                 message = "It's a draw :-(";
                 break;
             default:
-                message = "Player " + winner + " wins!!!";
+                //message = "Player " + winner + " wins!!!";
+                message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
                 break;
         }
-        lblPlayer.setText(message);
+        alert.setContentText(message);
+        alert.show();
+
+
     }
 
     private void clearBoard()
