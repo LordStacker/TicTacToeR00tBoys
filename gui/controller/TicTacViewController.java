@@ -65,7 +65,6 @@ public class TicTacViewController implements Initializable {
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
                     displayWinner(winner);
-                    displayWinner(winner);
                 } else {
 
                     int player = game.getNextPlayer();
@@ -84,6 +83,7 @@ public class TicTacViewController implements Initializable {
 
     @FXML
     private void handleNewGame(ActionEvent event) {
+/*
         if (GameBoard.counterX > GameBoard.counterY) {
             score = Xscore.getText();
             playerName = lblPlayer.getText();
@@ -94,14 +94,17 @@ public class TicTacViewController implements Initializable {
         }
         Player p = new Player(playerName, score);
         currPlayer.setPersonList(p);
-        Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true);
         GameBoard.counterY = 0;
         GameBoard.counterX = 0;
+         Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true);
+        */
+
         game.newGame();
         Xscore.setText(game.getWonGamesByX());
         Oscore.setText(game.getWonGamesByO());
         setPlayer();
         clearBoard();
+
     }
 
     @Override
@@ -132,9 +135,8 @@ public class TicTacViewController implements Initializable {
         } else {
             message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
         }
-        if (GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE) {
-            System.out.println(GameBoard.counterX);
-            System.out.println(GameBoard.counterY);
+        if (GameBoard.counterX == GameBoard.MAX_SCORE  || GameBoard.counterY == GameBoard.MAX_SCORE) {
+            sendScoreToTheBoard(new ActionEvent());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(message);
             Optional<ButtonType> option = alert.showAndWait();
@@ -142,7 +144,7 @@ public class TicTacViewController implements Initializable {
               // restart game again
 
                 handleNewGame(new ActionEvent());
-                // sendScoreToTheBoard(new ActionEvent());
+                //
             }
         }
         turnLabel.setText(message);
