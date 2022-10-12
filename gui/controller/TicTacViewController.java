@@ -83,6 +83,13 @@ public class TicTacViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+
+        // when called from utils does not know about the state and comes as null pref
+        // if gameState is Player vs player = should load GameBoard
+        // else gameState player vs AI = should load GameBoardComputer and share same Interface
+        //
+        //
+
         if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             game = new GameBoard(this);
         } else {
@@ -94,6 +101,7 @@ public class TicTacViewController implements Initializable {
         baseWindowAction.setOnAction(event ->
                 Utils.changeScene(event, "../gui/views/BaseView.fxml", null, null, true,GameState.NOT_PLAYING));
     }
+
 
     private void setPlayer() {
         String xOrO = game.getPlayer() == 0 ? "X" : "O";
@@ -137,7 +145,4 @@ public class TicTacViewController implements Initializable {
         lblPlayer2.setText(playerTwo + " (O) ");
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
-    }
 }

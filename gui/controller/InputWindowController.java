@@ -29,12 +29,10 @@ public class InputWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         baseController = new BaseWindowController();
-
         checkGameState();
+
         start_game.setOnAction(event ->
                     Utils.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),player_two_name.getText(),true, state));
-//        start_game.setOnAction(event ->
-//                    Utils.changeScene(event,"../gui/views/TicTacViewDynamicTest.fxml",player_one_name.getText(),null,true, GameState.COMPUTER_AI));
         creatorsAction.setOnAction(event ->
                 Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false,GameState.NOT_PLAYING));
         rulesAction.setOnAction(event ->

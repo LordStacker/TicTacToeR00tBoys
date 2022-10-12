@@ -26,6 +26,7 @@ public class GameBoardComputer implements IGameModel {
     public static int counterY = 0;
 
     private TicTacViewController controller;
+
     public GameBoardComputer(TicTacViewController controller){
 //        for (int r = 0; r < this.board.length; r++) {
 //            for (int c = 0; c < this.board.length; c++) {

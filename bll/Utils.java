@@ -32,7 +32,7 @@ public class Utils {
                 }else {
                     pc.setNames(playerOneName,playerTwoName);
                 }
-                pc.setGameState(gameState);
+               // pc.setGameState(gameState); // does not work cuz controller instance fails ...
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

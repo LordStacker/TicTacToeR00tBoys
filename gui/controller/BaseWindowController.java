@@ -28,7 +28,7 @@ public class BaseWindowController implements Initializable {
         playerVPlayer.setOnAction(event ->
                 Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true, GameState.NOT_PLAYING));
         playerVComputer.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true, GameState.NOT_PLAYING));
+                Utils.changeScene(event,"../gui/views/InputViewAI.fxml",null,null,true, GameState.NOT_PLAYING));
 
         creatorsAction.setOnAction(event ->
                 Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false,GameState.NOT_PLAYING));
