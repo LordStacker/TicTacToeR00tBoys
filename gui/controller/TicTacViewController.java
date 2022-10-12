@@ -127,10 +127,7 @@ public class TicTacViewController implements Initializable {
             alert.setContentText(message);
             alert.show();
         }
-        if (winner == -1) {
-            alert.setContentText(message);
-            alert.show();
-        }
+        turnLabel.setText(message);
     }
 
     private void clearBoard() {
