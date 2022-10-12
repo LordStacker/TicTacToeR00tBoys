@@ -16,6 +16,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import tictactoe.be.DataStore;
+import tictactoe.be.Player;
 import tictactoe.bll.*;
 
 /**
@@ -37,7 +39,7 @@ public class TicTacViewController implements Initializable {
 
     @FXML
     private GridPane gridPane;
-    
+
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
@@ -53,27 +55,21 @@ public class TicTacViewController implements Initializable {
 
 
     @FXML
-    private void handleButtonAction(ActionEvent event)
-    {
-        try
-        {
+    private void handleButtonAction(ActionEvent event) {
+        try {
             Integer row = GridPane.getRowIndex((Node) event.getSource());
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            if (game.play(c, r)) 
-			{
-                if (game.isGameOver()) 
-				{
+            if (game.play(c, r)) {
+                if (game.isGameOver()) {
                     int winner = game.getWinner();
                     game.resetBoard();
                     clearBoard();
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
                     displayWinner(winner);
-					                }
-					else 
-				{
+                } else {
                     int player = game.getNextPlayer();
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
@@ -81,15 +77,13 @@ public class TicTacViewController implements Initializable {
                     setPlayer();
                 }
             }
-        } catch (Exception e) 
-		{
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    private void handleNewGame(ActionEvent event) 
-	{
+    private void handleNewGame(ActionEvent event) {
         game.newGame();
         Xscore.setText(game.getWonGamesByX());
         Oscore.setText(game.getWonGamesByO());
@@ -98,25 +92,22 @@ public class TicTacViewController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
-	{
+    public void initialize(URL url, ResourceBundle rb) {
         game = new GameBoard();
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
-                Utilities.changeScene(event,"../gui/views/BaseView.fxml",null,null,true));
+                Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true));
         btnNewGame.setOnAction(this::sendScoreToTheBoard);
     }
 
-    private void setPlayer()
-    {
-        String xOrO = game.getPlayer()  == 0 ? "X" : "O";
+    private void setPlayer() {
+        String xOrO = game.getPlayer() == 0 ? "X" : "O";
         turnLabel.setText(TURN_LABEL + xOrO + " turn ");
     }
 
     private void displayWinner(int winner) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        System.out.println(winner);
         String message = "";
         if (winner == 1) {
             GameBoard.counterX++;
@@ -124,13 +115,12 @@ public class TicTacViewController implements Initializable {
         if (winner == 0) {
             GameBoard.counterY++;
         }
-        switch (winner)
-        {
+        switch (winner) {
             case -1:
                 message = "It's a draw :-(";
                 break;
             default:
-                message = winner == 1 ? lblPlayer.getText() +  " wins!!!" : lblPlayer2.getText() +  " wins!!!";
+                message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
                 break;
         }
         if (GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE) {
@@ -141,41 +131,37 @@ public class TicTacViewController implements Initializable {
             alert.setContentText(message);
             alert.show();
         }
-
-
-
     }
 
-    private void clearBoard()
-    {
-        for(Node n : gridPane.getChildren())
-        {
+    private void clearBoard() {
+        for (Node n : gridPane.getChildren()) {
             Button btn = (Button) n;
             btn.setText("");
         }
     }
 
-    private void sendScoreToTheBoard(ActionEvent e){
-        if(GameBoard.counterX > GameBoard.counterY){
+    private void sendScoreToTheBoard(ActionEvent e) {
+        if (GameBoard.counterX > GameBoard.counterY) {
             score = Xscore.getText();
             playerName = lblPlayer.getText();
         }
-        if(GameBoard.counterX == GameBoard.counterY){
+        if (GameBoard.counterX == GameBoard.counterY) {
             score = "TIE";
-            playerName= lblPlayer.getText() + "-" + lblPlayer2.getText();
+            playerName = lblPlayer.getText() + "-" + lblPlayer2.getText();
         }
-        if(GameBoard.counterX < GameBoard.counterY){
+        if (GameBoard.counterX < GameBoard.counterY) {
             score = Oscore.getText();
             playerName = lblPlayer2.getText();
 
         }
 
-        Player p = new Player(playerName,score);
+        Player p = new Player(playerName, score);
         currPlayer.setPersonList(p);
-        Utilities.changeScene(e,"../gui/views/BaseView.fxml",null,null,true);
+        Utilities.changeScene(e, "../gui/views/BaseView.fxml", null, null, true);
         GameBoard.counterY = 0;
         GameBoard.counterX = 0;
     }
+
     public void setPlayers(Player p1, Player p2) {
         this.p1 = p1;
         this.p2 = p2;

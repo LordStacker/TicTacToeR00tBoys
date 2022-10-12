@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import tictactoe.bll.Player;
+import tictactoe.be.Player;
 import tictactoe.bll.Utilities;
 import java.net.URL;
 import java.util.ResourceBundle;

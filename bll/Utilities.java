@@ -6,12 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictactoe.be.Player;
 import tictactoe.gui.controller.TicTacViewController;
 import java.io.IOException;
 
 public class Utilities {
     //TODO: Custom exceptions
-    public static void changeScene(ActionEvent event, String fxmlFile, Player p1,Player p2,boolean isGameplayAction) {
+    public static void changeScene(ActionEvent event, String fxmlFile, Player p1, Player p2, boolean isGameplayAction) {
         Parent root = null;
         Stage stage = null;
         // TODO : we can still pass empty "" string :(
