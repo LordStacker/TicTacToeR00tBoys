@@ -45,7 +45,7 @@ public class TicTacViewController implements Initializable {
 
     private IGameModel game;
 
-    private GameState gameState = GameState.COMPUTER_AI;
+    private GameState gameState = GameState.PLAYER_VS_PLAYER;
 
 
     @FXML
@@ -179,4 +179,7 @@ public class TicTacViewController implements Initializable {
         lblPlayer2.setText(playerTwo + " (O) ");
     }
 
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
 }

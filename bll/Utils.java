@@ -16,7 +16,6 @@ public class Utils {
 
     // 1v1 = gameState = PLAYER_VS_PLAYER
     // 1vC = gameState = PLAYER_VS_COMPUTER
-
     // getting 1vC
     public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName, boolean isGameplayAction, GameState gameState) {
         Parent root = null;
@@ -32,7 +31,7 @@ public class Utils {
                 }else {
                     pc.setNames(playerOneName,playerTwoName);
                 }
-               // pc.setGameState(gameState); // does not work cuz controller instance fails ...
+                pc.setGameState(gameState); // does not work cuz controller instance fails ...
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
