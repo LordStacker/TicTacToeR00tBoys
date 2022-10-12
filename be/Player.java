@@ -1,4 +1,4 @@
-package tictactoe.bll;
+package tictactoe.be;
 
 public class Player {
     // private final ObservableList<String> players;

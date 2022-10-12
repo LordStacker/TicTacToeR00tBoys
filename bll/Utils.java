@@ -6,27 +6,35 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictactoe.gui.controller.BaseWindowController;
+import tictactoe.gui.controller.InputWindowController;
 import tictactoe.gui.controller.TicTacViewController;
 import java.io.IOException;
 
 public class Utils {
     //TODO: Custom exceptions
-    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName,boolean isGameplayAction) {
+
+    // 1v1 = gameState = PLAYER_VS_PLAYER
+    // 1vC = gameState = PLAYER_VS_COMPUTER
+
+    // getting 1vC
+    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName, boolean isGameplayAction, GameState gameState) {
         Parent root = null;
         Stage stage = null;
-        // TODO : we can still pass empty "" string :(
-        if (playerOneName != null && playerTwoName != null) {
+
+        if(gameState.equals(GameState.COMPUTER_AI) || gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             try {
                 FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
                 root = loader.load();
                 TicTacViewController pc = loader.getController();
                 pc.setNames(playerOneName, playerTwoName);
+                pc.setGameState(gameState);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
             try {
-                root = FXMLLoader.load(Utils.class.getResource(fxmlFile)); // leave this one when we return unfortunately null values
+               root = FXMLLoader.load(Utils.class.getResource(fxmlFile));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -3,8 +3,7 @@ package tictactoe.gui.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import tictactoe.bll.Player;
-import tictactoe.bll.Players;
+import tictactoe.be.Player;
 
 import java.net.URL;
 import java.util.ArrayList;

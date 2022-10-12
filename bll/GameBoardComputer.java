@@ -5,18 +5,14 @@
  */
 package tictactoe.bll;
 
-import tictactoe.bll.IGameModel;
 import tictactoe.gui.controller.TicTacViewController;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Stegger
  */
-public class GameBoard implements IGameModel {
+public class GameBoardComputer implements IGameModel {
     private int player = 0;
+
     private char[][] board =new char[3][3];
     private int roundCount=0;
     private char token=' ';
@@ -30,12 +26,16 @@ public class GameBoard implements IGameModel {
     public static int counterY = 0;
 
     private TicTacViewController controller;
-
-    public GameBoard(TicTacViewController controller){
+    public GameBoardComputer(TicTacViewController controller){
+//        for (int r = 0; r < this.board.length; r++) {
+//            for (int c = 0; c < this.board.length; c++) {
+//                this.board[r][c]=0;
+//            }
+//        }
         this.controller = controller;
     }
-    public GameBoard() {}
 
+    public GameBoardComputer() {}
     /**
      * Returns 0 for player 0, 1 for player 1.
      *
@@ -67,11 +67,25 @@ public class GameBoard implements IGameModel {
     public boolean play(int col, int row) {
         //Marking current field if it is empty
         if (this.board[col][row]==' ') {
-            this.board[col][row]=this. player == 0 ? 'X' : 'O';
-           this.roundCount++;
+            this.board[col][row]=this.player == 0 ? 'X' : 'O';
+            this.roundCount++;
+            printBoard(this.board);
             return true;
         }
+
+      //  printBoard(this.board);
+
         return false;
+    }
+
+    private void printBoard(char[][] board) {
+
+        for (char[] row : board){
+            for (char column : row){
+                System.out.println(column);
+            }
+            System.out.println();
+        }
     }
 
     public boolean isGameOver() {
@@ -136,6 +150,7 @@ public class GameBoard implements IGameModel {
         wonGamesByO = 0;
         counterX = 0;
         counterY = 0;
+
     }
 
     //Cleans current matrix
@@ -148,7 +163,6 @@ public class GameBoard implements IGameModel {
         }
     }
 
-
     private char checkWinningRows(int row){
         for (int i = 0; i < row; i++) {
             if (this.board[i][0] == this.board[i][1]
@@ -157,6 +171,7 @@ public class GameBoard implements IGameModel {
 
                 return this.board[i][0];
             }
+
         }
         return ' ';
     }
@@ -186,6 +201,7 @@ public class GameBoard implements IGameModel {
 
         return ' ';
     }
+
 
     public String  getWonGamesByX(){
         String pivot=""+ this.wonGamesByX;

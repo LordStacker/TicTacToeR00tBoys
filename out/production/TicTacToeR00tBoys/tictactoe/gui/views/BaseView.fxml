@@ -39,7 +39,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="290.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Player VS AI" />
+                  <Button fx:id="playerVComputer" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Player VS AI" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="290.0">

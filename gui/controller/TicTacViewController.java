@@ -5,9 +5,7 @@
  */
 package tictactoe.gui.controller;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -18,10 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import tictactoe.bll.GameBoard;
-import tictactoe.bll.IGameModel;
-import tictactoe.bll.Player;
+import tictactoe.bll.*;
 import tictactoe.bll.Utils;
 
 /**
@@ -44,6 +39,8 @@ public class TicTacViewController implements Initializable {
 
     private IGameModel game;
 
+    private GameState gameState = GameState.COMPUTER_AI;
+
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -52,6 +49,7 @@ public class TicTacViewController implements Initializable {
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
+
             if (game.play(c, r)) {
                 if (game.isGameOver()) {
                     int winner = game.getWinner();
@@ -84,11 +82,15 @@ public class TicTacViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = new GameBoard();
+        if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
+            game = new GameBoard(this);
+        } else {
+            game = new GameBoardComputer(this);
+        }
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
-                Utils.changeScene(event, "../gui/views/BaseView.fxml", null, null, true));
+                Utils.changeScene(event, "../gui/views/BaseView.fxml", null, null, true,GameState.NOT_PLAYING));
     }
 
     private void setPlayer() {
@@ -131,5 +133,9 @@ public class TicTacViewController implements Initializable {
     public void setNames(String playerOne, String playerTwo) {
         lblPlayer.setText(playerOne + " (X) ");
         lblPlayer2.setText(playerTwo + " (O) ");
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 }

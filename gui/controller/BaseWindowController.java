@@ -1,23 +1,17 @@
 package tictactoe.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import tictactoe.bll.Player;
+import tictactoe.bll.GameState;
 import tictactoe.bll.Utils;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class BaseWindowController implements Initializable {
+    @FXML
+    private Button playerVComputer;
     @FXML
     private Button scoreBoardAction;
     @FXML
@@ -27,14 +21,18 @@ public class BaseWindowController implements Initializable {
     @FXML
     private Button playerVPlayer;
 
-    // TODO : Creators and rules fxml players ui are just templates needs to be done
+    // MULTIPLAYER / PLAYER VS AI
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerVPlayer.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true));
+                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true, GameState.NOT_PLAYING));
+        playerVComputer.setOnAction(event ->
+                Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true, GameState.NOT_PLAYING));
+
         creatorsAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false));
+                Utils.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false,GameState.NOT_PLAYING));
         rulesAction.setOnAction(event ->
-                Utils.changeScene(event,"../gui/views/RulesView.fxml",null,null,false));
+                Utils.changeScene(event,"../gui/views/RulesView.fxml",null,null,false,GameState.NOT_PLAYING));
     }
 }
