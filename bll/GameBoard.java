@@ -8,6 +8,8 @@ package tictactoe.bll;
 import tictactoe.bll.IGameModel;
 import tictactoe.gui.controller.TicTacViewController;
 
+import java.util.Random;
+
 /**
  * @author Stegger
  */
@@ -62,6 +64,33 @@ public class GameBoard implements IGameModel {
         return false;
     }
 
+    public void AIcomputer(){
+        Random rand = new Random(); //instance of random class
+
+        int col=rand.nextInt((3));
+        int row=rand.nextInt((3));
+
+
+        if(this.board[col][row] == ' ' && this.roundCount < 9 ){
+            this.player=0;
+            play(col,row);
+        }
+        else if(this.board[col][row] != ' ' && this.roundCount < 9 ){
+            AIcomputer();
+        }
+    }
+
+    public int AIButtonNumber(int col,int row)
+    {
+        int token=0;
+        for (int i = 0; i < col; i++) {
+            for (int j = 0; j < row; j++) {
+                token++;
+            }
+        }
+
+        return token;
+    }
     public boolean isGameOver() {
 
         //Check if there is winning row

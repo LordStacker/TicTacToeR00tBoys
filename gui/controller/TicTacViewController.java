@@ -65,10 +65,14 @@ public class TicTacViewController implements Initializable {
                     Xscore.setText(game.getWonGamesByX());
                     Oscore.setText(game.getWonGamesByO());
                     displayWinner(winner);
+                    displayWinner(winner);
                 } else {
+
                     int player = game.getNextPlayer();
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
+                    //Button btn2 =(Button)  ;
+
                     btn.setText(xOrO);
                     setPlayer();
                 }
@@ -80,6 +84,19 @@ public class TicTacViewController implements Initializable {
 
     @FXML
     private void handleNewGame(ActionEvent event) {
+        if (GameBoard.counterX > GameBoard.counterY) {
+            score = Xscore.getText();
+            playerName = lblPlayer.getText();
+        }else if (GameBoard.counterX < GameBoard.counterY) {
+            score = Oscore.getText();
+            playerName = lblPlayer2.getText();
+
+        }
+        Player p = new Player(playerName, score);
+        currPlayer.setPersonList(p);
+        Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true);
+        GameBoard.counterY = 0;
+        GameBoard.counterX = 0;
         game.newGame();
         Xscore.setText(game.getWonGamesByX());
         Oscore.setText(game.getWonGamesByO());
@@ -116,15 +133,17 @@ public class TicTacViewController implements Initializable {
             message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
         }
         if (GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE) {
+            System.out.println(GameBoard.counterX);
+            System.out.println(GameBoard.counterY);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(message);
             Optional<ButtonType> option = alert.showAndWait();
             if(ButtonType.OK.equals(option.get())){
               // restart game again
-                sendScoreToTheBoard(new ActionEvent());
-                handleNewGame(new ActionEvent());
-            }
 
+                handleNewGame(new ActionEvent());
+                // sendScoreToTheBoard(new ActionEvent());
+            }
         }
         turnLabel.setText(message);
     }
