@@ -80,6 +80,11 @@ public class TicTacViewController implements Initializable {
                         Button btn = (Button) event.getSource();
                         String xOrO = player == 1 ? "X" : "O";
                         btn.setText(xOrO);
+                        if(xOrO.equals("X")){
+                            btn.setStyle("-fx-text-fill: red");
+                        }else {
+                            btn.setStyle("-fx-text-fill: blue");
+                        }
                         setPlayer();
                     }
                 }
@@ -97,7 +102,10 @@ public class TicTacViewController implements Initializable {
                         Button btn = (Button) event.getSource();
                         String xOrO  = "X";
                         btn.setText(xOrO);
-                        fetchedButtons.get(game.aiComputer()).setText("O");
+                        btn.setStyle("-fx-text-fill: red");
+                        Button btnPredict = fetchedButtons.get(game.aiComputer());
+                        btnPredict.setText("O");
+                        btnPredict.setStyle("-fx-text-fill: blue");
                     }
                     setPlayer();
                 }
@@ -202,12 +210,5 @@ public class TicTacViewController implements Initializable {
         lblPlayer.setText(playerOne + " (X) ");
         lblPlayer2.setText(playerTwo + " (O) ");
     }
-
-    public void setPlayers(Player p1, Player p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-
-        lblPlayer.setText(p1.getName() + " (X) ");
-        lblPlayer2.setText(p2.getName() + " (O) ");
-    }
+    
 }
