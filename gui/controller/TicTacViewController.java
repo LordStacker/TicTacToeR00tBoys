@@ -17,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import tictactoe.be.DataStore;
 import tictactoe.be.Player;
 import tictactoe.bll.*;
@@ -70,6 +72,11 @@ public class TicTacViewController implements Initializable {
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
                     btn.setText(xOrO);
+                    if(xOrO.equals("X")){
+                        btn.setStyle("-fx-text-fill: red");
+                    }else {
+                        btn.setStyle("-fx-text-fill: blue");
+                    }
                     setPlayer();
                 }
             }
