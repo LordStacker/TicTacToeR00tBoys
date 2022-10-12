@@ -20,7 +20,7 @@
    <top>
       <HBox fx:id="header" alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Score Board">
+            <Label styleClass="tableTable" text="Score Board">
                <font>
                   <Font size="37.0" />
                </font>
@@ -37,8 +37,11 @@
             <TableView fx:id="resultTable" prefHeight="206.0" prefWidth="310.0">
               <columns>
                 <TableColumn fx:id="resultName" prefWidth="155.0" text="name" />
-                <TableColumn fx:id="resultScore" prefWidth="154.0" text="score" />
+                <TableColumn fx:id="resultScore" minWidth="3.0" prefWidth="154.0" text="score" />
               </columns>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" />
+               </padding>
             </TableView>
          </children>
       </VBox>

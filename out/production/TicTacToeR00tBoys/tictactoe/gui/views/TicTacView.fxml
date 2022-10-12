@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.TicTacViewController">
+<BorderPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/TicTacWindowStyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.TicTacViewController">
    <center>
-      <GridPane fx:id="gridPane" hgap="4.0" prefWidth="733.0" vgap="4.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="gridPane" hgap="4.0" prefWidth="733.0" styleClass="gridPane" vgap="4.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,15 +25,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btn1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="285.0" prefWidth="239.0" />
-            <Button fx:id="btn2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="1" />
-            <Button fx:id="btn3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="2" />
-            <Button fx:id="btn4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.rowIndex="1" />
-            <Button fx:id="btn5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btn6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="btn7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.rowIndex="2" />
-            <Button fx:id="btn8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="btn9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="btn1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="112.0" prefWidth="125.0" styleClass="buttonPanel" />
+            <Button fx:id="btn2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="1" />
+            <Button fx:id="btn3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="2">
+               <font>
+                  <Font size="29.0" />
+               </font></Button>
+            <Button fx:id="btn4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.rowIndex="1" />
+            <Button fx:id="btn5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btn6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btn7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.rowIndex="2" />
+            <Button fx:id="btn8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="btn9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonPanel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -56,7 +59,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPlayer" text="Nick (X)">
+                        <Label id="playerNames" fx:id="lblPlayer" styleClass="playerNames" text="Nick (X)">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -65,7 +68,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="turnLabel" text="Its X turn">
+                        <Label fx:id="turnLabel" alignment="CENTER" prefHeight="23.0" prefWidth="120.0" styleClass="score" text="Its X turn">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -74,7 +77,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPlayer2" text="Atanas (O)">
+                        <Label id="playerNames" fx:id="lblPlayer2" styleClass="playerNames" text="Atanas (O)">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -101,12 +104,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="101.0" prefWidth="145.0">
                            <children>
-                              <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game">
+                              <Button id="buttonPanel" fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" styleClass="buttonField" text="New Game">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="baseWindowAction" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="25.0" prefWidth="78.0" text="I give up">
+                              <Button fx:id="baseWindowAction" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="30.0" prefWidth="86.0" styleClass="buttonField" text="I give up">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>

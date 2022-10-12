@@ -70,9 +70,12 @@ public class TicTacViewController implements Initializable {
                     int player = game.getNextPlayer();
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 1 ? "X" : "O";
-                    //Button btn2 =(Button)  ;
-
                     btn.setText(xOrO);
+                    if(xOrO.equals("X")){
+                        btn.setStyle("-fx-text-fill: red");
+                    }else {
+                        btn.setStyle("-fx-text-fill: blue");
+                    }
                     setPlayer();
                 }
             }

@@ -18,9 +18,9 @@
    <top>
       <HBox fx:id="header" alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Tic Tac Toe">
+            <Label styleClass="mainLabel" text="TIC-TAC-TOE" textFill="#3a68e8">
                <font>
-                  <Font size="37.0" />
+                  <Font name="Source Code Pro Bold for Powerline" size="42.0" />
                </font>
             </Label>
          </children>
@@ -34,17 +34,20 @@
          <children>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="290.0">
                <children>
-                  <Button fx:id="playerVPlayer" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" text="Player VS Player" />
+                  <Button id="button" fx:id="playerVPlayer" mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" stylesheets="@../css/Main.css" text="Player VS Player">
+                     <font>
+                        <Font name="Source Code Pro Black for Powerline" size="30.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="290.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Player VS AI" />
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="154.0" text="Player VS AI" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="290.0">
                <children>
-                  <Button fx:id="scoreBoardAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Score Board" />
+                  <Button fx:id="scoreBoardAction" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" text="Score Board" />
                </children>
             </HBox>
          </children>
@@ -53,12 +56,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="rulesAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
+            <Button fx:id="rulesAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" styleClass="borderRules" text="Rules">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="creatorsAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Creators" />
+            <Button fx:id="creatorsAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" styleClass="borderRules" text="Creators" />
          </children>
       </HBox>
    </bottom>

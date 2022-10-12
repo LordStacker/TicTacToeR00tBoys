@@ -5,11 +5,75 @@ and open the template in the editor.
 */
 /* 
     Created on : 24-08-2016, 12:36:01
-    Author     : Stegger
+    Author     : r00tBoys
 */
 
+.root{
+    -fx-background-color:#000;
+}
+
 #pane {
-    -fx-background-image: url(../images/background.jpg);
-    -fx-background-repeat: stretch;   
+    -fx-background-repeat: stretch;
     -fx-background-position: center;
 }
+
+.button{
+    -fx-background-color:#000;
+    -fx-text-fill:#3a68e8;
+    -fx-font-family: 'Source Code Pro Black';
+    -fx-font-size: 20px;
+}
+
+.button:hover{
+     -fx-underline: true;
+     -fx-underline-color: #ff0000;
+}
+
+.playerNames{
+    -fx-font-size: 12px;
+}
+
+.label{
+    -fx-text-fill:#3a68e8;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Source Code Pro Black';
+}
+
+.mainLabel{
+   -fx-font-family: 'Impact';
+   -fx-font-size: 60px;
+}
+
+.tableTable{
+    -fx-font-size:40px;
+}
+
+.rulesInfo{
+    -fx-font-size:14px;
+}
+
+.borderRules{
+    -fx-underline: true;
+    -fx-font-size:18px;
+}
+
+.mark1{
+    -fx-font-size:28px;
+    -fx-text-fill: red;
+}
+
+.mark2{
+    -fx-font-size:28px;
+    -fx-text-fill: blue;
+}
+
+.input{
+     -fx-background-color: transparent;
+    -fx-border-color: #3a68e8;
+    -fx-border-width: 2;
+    -fx-text-fill: white;
+    -fx-text-size: 18px;
+}
+
+
+
