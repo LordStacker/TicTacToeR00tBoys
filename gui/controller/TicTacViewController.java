@@ -119,9 +119,9 @@ public class TicTacViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(message);
             Optional<ButtonType> option = alert.showAndWait();
-
             if(ButtonType.OK.equals(option.get())){
               // restart game again
+                sendScoreToTheBoard(new ActionEvent());
                 handleNewGame(new ActionEvent());
             }
 
