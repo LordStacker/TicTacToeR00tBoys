@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.ScoreWindowController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/Main.css"
+            xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.gui.controller.RulesWindowController">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
@@ -35,7 +36,8 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <Label prefHeight="287.0" prefWidth="324.0" text="1) 2 players are required for the game or if you don't&#10;    have friends to play with go and try the AI version.&#10;2) First decide which player will be X and wich player&#10;    will be O.&#10;3) The player with X starts the game.&#10;4) The first player must place their mark on any&#10;     of the squares on the grid.&#10;5) Then, the second player has a turn to place their &#10;     mark on the grid. &#10;6) Each player must continue to take 1 turn at a time &#10;    to place their marks until all the squares are full or&#10;    until one of the players gets 3 of their marks in a &#10;    straight line that is vertical, horizontal, or diagonal. " textAlignment="CENTER">
+            <Label prefHeight="287.0" prefWidth="324.0"
+                   text="1) 2 players are required for the game or if you don't&#10;    have friends to play with go and try the AI version.&#10;2) First decide which player will be X and wich player&#10;    will be O.&#10;3) The player with X starts the game.&#10;4) The first player must place their mark on any&#10;     of the squares on the grid.&#10;5) Then, the second player has a turn to place their &#10;     mark on the grid. &#10;6) Each player must continue to take 1 turn at a time &#10;    to place their marks until all the squares are full or&#10;    until one of the players gets 3 of their marks in a &#10;    straight line that is vertical, horizontal, or diagonal. " textAlignment="CENTER">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
