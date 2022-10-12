@@ -6,6 +6,8 @@
 package tictactoe.gui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +16,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import tictactoe.bll.*;
 import tictactoe.bll.Utils;
 
@@ -22,6 +27,8 @@ import tictactoe.bll.Utils;
  * @author r00tBoys
  */
 public class TicTacViewController implements Initializable {
+    @FXML
+    private BorderPane borderPaneId;
     @FXML
     private Label Xscore,
             Oscore,
@@ -49,25 +56,46 @@ public class TicTacViewController implements Initializable {
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
 
-            if (game.play(c, r)) {
-                if (game.isGameOver()) {
-                    int winner = game.getWinner();
-                    game.resetBoard();
-                    clearBoard();
-                    Xscore.setText(game.getWonGamesByX());
-                    Oscore.setText(game.getWonGamesByO());
-                    displayWinner(winner);
-                } else {
-                    int player = game.getNextPlayer();
-                    Button btn = (Button) event.getSource();
-                    String xOrO = player == 1 ? "X" : "O";
-                    btn.setText(xOrO);
-                    setPlayer();
+            if(this.gameState.equals(GameState.PLAYER_VS_PLAYER)){
+                if (game.play(c, r)) {
+                    if (game.isGameOver()) {
+                        int winner = game.getWinner();
+                        game.resetBoard();
+                        clearBoard();
+                        Xscore.setText(game.getWonGamesByX());
+                        Oscore.setText(game.getWonGamesByO());
+                        displayWinner(winner);
+                    } else {
+                        int player = game.getNextPlayer();
+                        Button btn = (Button) event.getSource();
+                        String xOrO = player == 1 ? "X" : "O";
+                        btn.setText(xOrO);
+                        setPlayer();
+                    }
+                }
+            } else {
+                if (game.play(c, r)) {
+                    if (game.isGameOver()) {
+                        int winner = game.getWinner();
+                        game.resetBoard();
+                        clearBoard();
+                        Xscore.setText(game.getWonGamesByX());
+                        Oscore.setText(game.getWonGamesByO());
+                        displayWinner(winner);
+                    } else {
+                        List<Button> fetchedButtons = getListOfButtons(); // pulling list of all buttons on the field
+                        Button btn = (Button) event.getSource();
+                        String xOrO  = "X";
+                        btn.setText(xOrO);
+                        fetchedButtons.get(game.aiComputer()).setText("O");
+                    }
                 }
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     @FXML
@@ -81,22 +109,31 @@ public class TicTacViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-
-        // when called from utils does not know about the state and comes as null pref
-        // if gameState is Player vs player = should load GameBoard
-        // else gameState player vs AI = should load GameBoardComputer and share same Interface
-        //
         if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             game = new GameBoard(this);
         } else {
             game = new GameBoardComputer(this);
         }
-
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
                 Utils.changeScene(event, "../gui/views/BaseView.fxml", null, null, true,GameState.NOT_PLAYING));
+    }
+
+    public List<Button> getListOfButtons(){
+        List<Button> buttonList = new ArrayList<>();
+
+        for (int i = 0; i < 1; i++) {
+            Node nodeOut = borderPaneId.getChildren().get(i);
+            if (nodeOut instanceof GridPane) {
+                for(Node button : ((GridPane) nodeOut).getChildren()){
+                    if(button instanceof Button){
+                        buttonList.add((Button) button);
+                    }
+                }
+            }
+        }
+        return buttonList;
     }
 
 

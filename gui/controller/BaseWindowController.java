@@ -26,6 +26,8 @@ public class BaseWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         playerVPlayer.setOnAction(event ->
                 Utils.changeScene(event,"../gui/views/InputView.fxml",null,null,true, GameState.NOT_PLAYING));
+
+
         playerVComputer.setOnAction(event ->
                 Utils.changeScene(event,"../gui/views/InputViewComputer.fxml",null,null,true, GameState.NOT_PLAYING));
 

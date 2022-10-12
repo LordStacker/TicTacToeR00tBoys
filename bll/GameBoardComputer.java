@@ -7,6 +7,8 @@ package tictactoe.bll;
 
 import tictactoe.gui.controller.TicTacViewController;
 
+import java.util.Random;
+
 /**
  * @author Stegger
  */
@@ -70,23 +72,32 @@ public class GameBoardComputer implements IGameModel {
         if (this.board[col][row]==' ') {
             this.board[col][row]=this.player == 0 ? 'X' : 'O';
             this.roundCount++;
-            printBoard(this.board);
             return true;
         }
-
-      //  printBoard(this.board);
-
         return false;
     }
 
-    private void printBoard(char[][] board) {
 
-        for (char[] row : board){
-            for (char column : row){
-                System.out.println(column);
-            }
-            System.out.println();
+    public int aiComputer(){
+        Random rand = new Random(); //instance of random class
+
+        int col=rand.nextInt((3));
+        int row=rand.nextInt((3));
+
+        if(this.board[col][row] == ' ' && this.roundCount < 9 ){
+            this.player=0;
+            play(col,row);
+            return aiButtonNumber(col,row);
         }
+        else if(this.board[col][row] != ' ' && this.roundCount < 9 ){
+            aiComputer();
+        }
+        return 0;
+    }
+
+    public int aiButtonNumber(int col, int row)
+    {
+        return  (col * 3) + row;
     }
 
     public boolean isGameOver() {

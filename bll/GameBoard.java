@@ -196,4 +196,15 @@ public class GameBoard implements IGameModel {
         String pivot=""+ this.wonGamesByO;
         return pivot;
     }
+
+
+    public int aiButtonNumber(int col, int row) {
+        return 0;
+    }
+
+
+    public int aiComputer() {
+        // do nothing
+        return 0;
+    }
 }
