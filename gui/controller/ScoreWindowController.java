@@ -8,8 +8,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tictactoe.be.DataStore;
 import tictactoe.be.Player;
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -22,8 +21,9 @@ public class CreatorsWindowsController implements Initializable {
         closeButton.setOnAction(this::setCloseButton);
 
     }
+
     @FXML
-    private void setCloseButton(ActionEvent event){
+    private void setCloseButton(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
@@ -33,14 +33,17 @@ public class CreatorsWindowsController implements Initializable {
     public void openNicoGit(ActionEvent actionEvent) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://github.com/LordStacker"));
     }
+
     @FXML
     public void openTomasGIt(ActionEvent actionEvent) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://github.com/TomassSimko"));
     }
+
     @FXML
     public void openDimiGit(ActionEvent actionEvent) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://github.com/DimitarGateshki"));
     }
+
     @FXML
     public void openAtanasGit(ActionEvent actionEvent) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://github.com/AtanasLS"));

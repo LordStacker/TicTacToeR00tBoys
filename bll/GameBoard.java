@@ -13,18 +13,16 @@ import tictactoe.gui.controller.TicTacViewController;
  */
 public class GameBoard implements IGameModel {
     private int player = 0,
-                wonGamesByX=0,
-                wonGamesByO=0,
-                roundCount=0;
-    private char[][] board =new char[3][3];
-    private char token=' ';
-
+            wonGamesByX = 0,
+            wonGamesByO = 0,
+            roundCount = 0;
+    private char[][] board = new char[3][3];
+    private char token = ' ';
 
     public final static int MAX_SCORE = 5;
 
-    public static int counterX = 0;
-    public static int counterY = 0;
-
+    public static int counterX = 0,
+            counterY = 0;
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -40,8 +38,8 @@ public class GameBoard implements IGameModel {
         return player;
     }
 
-    public int getPlayer(){
-         return this.player;
+    public int getPlayer() {
+        return this.player;
     }
 
     /**
@@ -56,9 +54,9 @@ public class GameBoard implements IGameModel {
      */
     public boolean play(int col, int row) {
         //Marking current field if it is empty
-        if (this.board[col][row]==' ') {
-            this.board[col][row]=this. player == 0 ? 'X' : 'O';
-           this.roundCount++;
+        if (this.board[col][row] == ' ') {
+            this.board[col][row] = this.player == 0 ? 'X' : 'O';
+            this.roundCount++;
             return true;
         }
         return false;
@@ -67,31 +65,31 @@ public class GameBoard implements IGameModel {
     public boolean isGameOver() {
 
         //Check if there is winning row
-        if (checkWinningRows(3)!=' '){
-            this.token=checkWinningRows(3);
-            this.roundCount=0;
+        if (checkWinningRows(3) != ' ') {
+            this.token = checkWinningRows(3);
+            this.roundCount = 0;
             return true;
 
         }
 
         //Check if there is winning collum
-        if (checkWinningColls(3)!=' '){
-            this.token=checkWinningColls(3);
-            this.roundCount=0;
+        if (checkWinningColls(3) != ' ') {
+            this.token = checkWinningColls(3);
+            this.roundCount = 0;
             return true;
         }
 
         //Check if there is winning diagonal
-        if (checkWinningDiagonals()!=' '){
-            this.token=checkWinningDiagonals();
-            this.roundCount=0;
+        if (checkWinningDiagonals() != ' ') {
+            this.token = checkWinningDiagonals();
+            this.roundCount = 0;
             return true;
         }
 
 
         //Check if there is no free fields
-        if (this.roundCount==9){
-            this.roundCount=0;
+        if (this.roundCount == 9) {
+            this.roundCount = 0;
             return true;
         }
         return false;
@@ -103,16 +101,16 @@ public class GameBoard implements IGameModel {
      * @return int id of winner, or -1 if draw.
      */
     public int getWinner() {
-        if (this.token=='X'){
+        if (this.token == 'X') {
             this.wonGamesByX++;
-            this.token=' ';
+            this.token = ' ';
             return 1;
-        } if(this.token=='O') {
-            this.wonGamesByO++;
-            this.token=' ';
-            return 0;
         }
-        else {
+        if (this.token == 'O') {
+            this.wonGamesByO++;
+            this.token = ' ';
+            return 0;
+        } else {
             return -1;
         }
     }
@@ -132,21 +130,21 @@ public class GameBoard implements IGameModel {
     }
 
     //Cleans current matrix
-    public void resetBoard(){
+    public void resetBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                this.board[i][j]=' ';
+                this.board[i][j] = ' ';
             }
 
         }
     }
 
 
-    private char checkWinningRows(int row){
+    private char checkWinningRows(int row) {
         for (int i = 0; i < row; i++) {
             if (this.board[i][0] == this.board[i][1]
                     && this.board[i][0] == this.board[i][2]
-                    &&this.board[i][0] !=' '){
+                    && this.board[i][0] != ' ') {
 
                 return this.board[i][0];
             }
@@ -155,11 +153,11 @@ public class GameBoard implements IGameModel {
         return ' ';
     }
 
-    private char checkWinningColls(int coll){
+    private char checkWinningColls(int coll) {
         for (int i = 0; i < coll; i++) {
             if (this.board[0][i] == this.board[1][i]
                     && this.board[0][i] == this.board[2][i]
-                    &&this.board[0][i] !=' '){
+                    && this.board[0][i] != ' ') {
                 return this.board[0][i];
             }
 
@@ -167,27 +165,27 @@ public class GameBoard implements IGameModel {
         return ' ';
     }
 
-    private char checkWinningDiagonals(){
+    private char checkWinningDiagonals() {
         if (this.board[0][0] == this.board[1][1]
                 && this.board[0][0] == this.board[2][2]
-                && this.board[0][0]!=' '){
+                && this.board[0][0] != ' ') {
             return this.board[0][0];
-        }else if(this.board[0][2] == this.board[1][1]
-                &&this.board[0][2] == this.board[2][0]
-                &&this.board[0][2] != ' '){
+        } else if (this.board[0][2] == this.board[1][1]
+                && this.board[0][2] == this.board[2][0]
+                && this.board[0][2] != ' ') {
             return this.board[0][2];
         }
 
         return ' ';
     }
 
-    public String  getWonGamesByX(){
-        String pivot=""+ this.wonGamesByX;
+    public String getWonGamesByX() {
+        String pivot = "" + this.wonGamesByX;
         return pivot;
     }
 
-    public String  getWonGamesByO(){
-        String pivot=""+ this.wonGamesByO;
+    public String getWonGamesByO() {
+        String pivot = "" + this.wonGamesByO;
         return pivot;
     }
 

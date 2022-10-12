@@ -6,14 +6,15 @@
 package tictactoe.gui.controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import tictactoe.be.DataStore;
@@ -32,10 +33,8 @@ public class TicTacViewController implements Initializable {
             lblPlayer2;
 
     @FXML
-    private Button baseWindowAction;
-
-    @FXML
-    private Button btnNewGame;
+    private Button baseWindowAction,
+            btnNewGame;
 
     @FXML
     private GridPane gridPane;
@@ -43,16 +42,13 @@ public class TicTacViewController implements Initializable {
     private static final String TURN_LABEL = "It's: ";
     private IGameModel game;
 
-    private String score;
-
-    private String playerName;
-
+    private String score,
+            playerName;
 
     private final DataStore currPlayer = DataStore.getInstance();
 
-    private Player p1;
-    private Player p2;
-
+    private Player p1,
+            p2;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -107,7 +103,6 @@ public class TicTacViewController implements Initializable {
     }
 
     private void displayWinner(int winner) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String message = "";
         if (winner == 1) {
             GameBoard.counterX++;
@@ -115,17 +110,21 @@ public class TicTacViewController implements Initializable {
         if (winner == 0) {
             GameBoard.counterY++;
         }
-        switch (winner) {
-            case -1:
-                message = "It's a draw :-(";
-                break;
-            default:
-                message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
-                break;
+        if (winner == -1) {
+            message = "It's a draw :-(";
+        } else {
+            message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
         }
         if (GameBoard.counterX == GameBoard.MAX_SCORE || GameBoard.counterY == GameBoard.MAX_SCORE) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(message);
-            alert.show();
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if(ButtonType.OK.equals(option.get())){
+              // restart game again
+                handleNewGame(new ActionEvent());
+            }
+
         }
         turnLabel.setText(message);
     }
