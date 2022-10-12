@@ -75,4 +75,15 @@ public interface IGameModel
      */
 
     public String getWonGamesByO();
+
+    /*
+     * int
+     * Return int of button number from col and row
+     */
+    public int aiButtonNumber(int col, int row);
+
+    /*
+     * plays AI and returns random number
+     */
+    public int aiComputer();
 }

@@ -9,7 +9,7 @@ import tictactoe.bll.Utilities;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InputWindowController implements Initializable {
+public class InputComputerWindowController implements Initializable {
 
     @FXML
     private Button rulesAction;
@@ -18,20 +18,17 @@ public class InputWindowController implements Initializable {
     @FXML
     private TextField player_one_name;
     @FXML
-    private TextField player_two_name;
-    @FXML
     private Button start_game;
 
-    private final GameState state = GameState.PLAYER_VS_PLAYER;
+    private final GameState state = GameState.COMPUTER_AI;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         start_game.setOnAction(event ->
-                Utilities.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),player_two_name.getText(),true, state));
+                Utilities.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),null,true, state));
         creatorsAction.setOnAction(event ->
                 Utilities.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false,GameState.NOT_PLAYING));
         rulesAction.setOnAction(event ->
                 Utilities.changeScene(event,"../gui/views/RulesView.fxml",null,null,false,GameState.NOT_PLAYING));
     }
-
 }

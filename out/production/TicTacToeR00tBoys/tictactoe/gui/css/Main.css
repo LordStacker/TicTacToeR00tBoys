@@ -10,12 +10,9 @@ and open the template in the editor.
 
 .root{
     -fx-background-color:#000;
-
 }
 
 #pane {
-   /* -fx-background-image: url(../images/test.jpeg);*/
-   /* -fx-background-color: #000;*/
     -fx-background-repeat: stretch;
     -fx-background-position: center;
 }
@@ -25,7 +22,6 @@ and open the template in the editor.
     -fx-text-fill:#3a68e8;
     -fx-font-family: 'Source Code Pro Black';
     -fx-font-size: 20px;
-
 }
 
 .button:hover{
@@ -41,13 +37,11 @@ and open the template in the editor.
     -fx-text-fill:#3a68e8;
     -fx-font-size: 20px;
     -fx-font-family: 'Source Code Pro Black';
-
 }
 
 .mainLabel{
    -fx-font-family: 'Impact';
    -fx-font-size: 60px;
- 
 }
 
 .tableTable{

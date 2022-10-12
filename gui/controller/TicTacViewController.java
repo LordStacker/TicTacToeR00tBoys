@@ -6,6 +6,8 @@
 package tictactoe.gui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,15 +18,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import tictactoe.be.DataStore;
 import tictactoe.be.Player;
 import tictactoe.bll.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * @author r00tBoys
  */
 public class TicTacViewController implements Initializable {
+    @FXML
+    private BorderPane borderPaneId;
     @FXML
     private Label Xscore,
             Oscore,
@@ -44,7 +51,8 @@ public class TicTacViewController implements Initializable {
 
     private String score,
             playerName;
-
+	
+	private GameState gameState = GameState.COMPUTER_AI;
     private final DataStore currPlayer = DataStore.getInstance();
 
     private Player p1,
@@ -57,31 +65,48 @@ public class TicTacViewController implements Initializable {
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            if (game.play(c, r)) {
-                if (game.isGameOver()) {
-                    int winner = game.getWinner();
-                    game.resetBoard();
-                    clearBoard();
-                    Xscore.setText(game.getWonGamesByX());
-                    Oscore.setText(game.getWonGamesByO());
-                    displayWinner(winner);
-                } else {
 
-                    int player = game.getNextPlayer();
-                    Button btn = (Button) event.getSource();
-                    String xOrO = player == 1 ? "X" : "O";
-                    btn.setText(xOrO);
-                    if(xOrO.equals("X")){
-                        btn.setStyle("-fx-text-fill: red");
-                    }else {
-                        btn.setStyle("-fx-text-fill: blue");
+            if(this.gameState.equals(GameState.PLAYER_VS_PLAYER)){
+                if (game.play(c, r)) {
+                    if (game.isGameOver()) {
+                        int winner = game.getWinner();
+                        game.resetBoard();
+                        clearBoard();
+                        Xscore.setText(game.getWonGamesByX());
+                        Oscore.setText(game.getWonGamesByO());
+                        displayWinner(winner);
+                    } else {
+                        int player = game.getNextPlayer();
+                        Button btn = (Button) event.getSource();
+                        String xOrO = player == 1 ? "X" : "O";
+                        btn.setText(xOrO);
+                        setPlayer();
+                    }
+                }
+            } else {
+                if (game.play(c, r)) {
+                    if (game.isGameOver()) {
+                        int winner = game.getWinner();
+                        game.resetBoard();
+                        clearBoard();
+                        Xscore.setText(game.getWonGamesByX());
+                        Oscore.setText(game.getWonGamesByO());
+                        displayWinner(winner);
+                    } else {
+                        List<Button> fetchedButtons = getListOfButtons(); // pulling list of all buttons on the field
+                        Button btn = (Button) event.getSource();
+                        String xOrO  = "X";
+                        btn.setText(xOrO);
+                        fetchedButtons.get(game.aiComputer()).setText("O");
                     }
                     setPlayer();
                 }
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     @FXML
@@ -96,12 +121,31 @@ public class TicTacViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        game = new GameBoard();
+        if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
+            game = new GameBoard(this);
+        } else {
+            game = new GameBoardComputer(this);
+        }
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
-                Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true));
-        btnNewGame.setOnAction(event -> handleNewGame());
+                Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true,GameState.NOT_PLAYING));
+    }
+
+    public List<Button> getListOfButtons(){
+        List<Button> buttonList = new ArrayList<>();
+
+        for (int i = 0; i < 1; i++) {
+            Node nodeOut = borderPaneId.getChildren().get(i);
+            if (nodeOut instanceof GridPane) {
+                for(Node button : ((GridPane) nodeOut).getChildren()){
+                    if(button instanceof Button){
+                        buttonList.add((Button) button);
+                    }
+                }
+            }
+        }
+        return buttonList;
     }
 
     private void setPlayer() {
@@ -153,6 +197,10 @@ public class TicTacViewController implements Initializable {
         currPlayer.setPersonList(p);
         GameBoard.counterY = 0;
         GameBoard.counterX = 0;
+    }
+    public void setNames(String playerOne, String playerTwo) {
+        lblPlayer.setText(playerOne + " (X) ");
+        lblPlayer2.setText(playerTwo + " (O) ");
     }
 
     public void setPlayers(Player p1, Player p2) {

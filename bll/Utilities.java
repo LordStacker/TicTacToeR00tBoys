@@ -6,29 +6,39 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tictactoe.be.Player;
+import tictactoe.gui.controller.BaseWindowController;
+import tictactoe.gui.controller.InputWindowController;
 import tictactoe.gui.controller.TicTacViewController;
 import java.io.IOException;
 
 public class Utilities {
     //TODO: Custom exceptions
-    public static void changeScene(ActionEvent event, String fxmlFile, Player p1, Player p2, boolean isGameplayAction) {
+
+    // 1v1 = gameState = PLAYER_VS_PLAYER
+    // 1vC = gameState = PLAYER_VS_COMPUTER
+
+    // getting 1vC
+    public static void changeScene(ActionEvent event, String fxmlFile, String playerOneName, String playerTwoName, boolean isGameplayAction, GameState gameState) {
         Parent root = null;
         Stage stage = null;
-        // TODO : we can still pass empty "" string :(
-        if (p1 != null && p2 != null) {
+
+        if(gameState.equals(GameState.COMPUTER_AI) || gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             try {
                 FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fxmlFile));
                 root = loader.load();
                 TicTacViewController pc = loader.getController();
-                pc.setPlayers(p1,p2);
-               // pc.setNames(p1.getName(), p2.getName());
+                if(gameState.equals(GameState.COMPUTER_AI)){
+                    pc.setNames(playerOneName, "AI");
+                }else {
+                    pc.setNames(playerOneName,playerTwoName);
+                }
+               // pc.setGameState(gameState); // does not work cuz controller instance fails ...
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
             try {
-                root = FXMLLoader.load(Utilities.class.getResource(fxmlFile)); // leave this one when we return unfortunately null values
+               root = FXMLLoader.load(Utilities.class.getResource(fxmlFile));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -43,7 +53,5 @@ public class Utilities {
         stage.setResizable(false);
         stage.show();
     }
-
-
 
 }
