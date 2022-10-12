@@ -32,7 +32,7 @@ public class InputWindowController implements Initializable {
 
         checkGameState();
         start_game.setOnAction(event ->
-                    Utils.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),player_two_name.getText(),true, GameState.COMPUTER_AI));
+                    Utils.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),player_two_name.getText(),true, state));
 //        start_game.setOnAction(event ->
 //                    Utils.changeScene(event,"../gui/views/TicTacViewDynamicTest.fxml",player_one_name.getText(),null,true, GameState.COMPUTER_AI));
         creatorsAction.setOnAction(event ->

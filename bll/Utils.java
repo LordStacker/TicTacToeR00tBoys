@@ -27,7 +27,11 @@ public class Utils {
                 FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
                 root = loader.load();
                 TicTacViewController pc = loader.getController();
-                pc.setNames(playerOneName, playerTwoName);
+                if(gameState.equals(GameState.COMPUTER_AI)){
+                    pc.setNames(playerOneName, "AI");
+                }else {
+                    pc.setNames(playerOneName,playerTwoName);
+                }
                 pc.setGameState(gameState);
             } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -82,11 +82,13 @@ public class TicTacViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             game = new GameBoard(this);
         } else {
             game = new GameBoardComputer(this);
         }
+
         setPlayer();
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
