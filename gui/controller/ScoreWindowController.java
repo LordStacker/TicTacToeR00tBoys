@@ -17,8 +17,6 @@ public class ScoreWindowController implements Initializable {
     private ListView<String> scoreList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       // set the items to the board
-
     }
 
     public void setPlayers(List<Player> playersList) {

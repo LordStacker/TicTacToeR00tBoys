@@ -7,7 +7,6 @@ package tictactoe.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -88,8 +87,6 @@ public class TicTacViewController implements Initializable {
         // if gameState is Player vs player = should load GameBoard
         // else gameState player vs AI = should load GameBoardComputer and share same Interface
         //
-        //
-
         if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
             game = new GameBoard(this);
         } else {
