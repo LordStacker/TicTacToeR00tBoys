@@ -104,7 +104,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="101.0" prefWidth="145.0">
                            <children>
-                              <Button id="buttonPanel" fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" styleClass="buttonField" text="New Game">
+                              <Button id="buttonPanel" mnemonicParsing="false" styleClass="buttonField" text="New Game">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>

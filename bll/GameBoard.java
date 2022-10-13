@@ -28,12 +28,14 @@ public class GameBoard implements IGameModel {
 
     public static int counterX = 0,
             counterY = 0;
-private TicTacViewController controller;
+    private TicTacViewController controller;
 
-    public GameBoard(TicTacViewController controller){
+    public GameBoard(TicTacViewController controller) {
         this.controller = controller;
     }
-    public GameBoard() {}
+
+    public GameBoard() {
+    }
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -72,6 +74,7 @@ private TicTacViewController controller;
         }
         return false;
     }
+
     public boolean isGameOver() {
 
         //Check if there is winning row
@@ -200,25 +203,23 @@ private TicTacViewController controller;
     }
 
 
-    public int aiComputer(){
+    public int aiComputer() {
         Random rand = new Random(); //instance of random class
 
-        int col=rand.nextInt((3));
-        int row=rand.nextInt((3));
+        int col = rand.nextInt((3));
+        int row = rand.nextInt((3));
 
-        if(this.board[col][row] == ' ' && this.roundCount < 9 ){
-            this.player=0;
-            play(col,row);
-            return aiButtonNumber(col,row);
-        }
-        else if(this.board[col][row] != ' ' && this.roundCount < 9 ){
+        if (this.board[col][row] == ' ' && this.roundCount < 9) {
+            this.player = 0;
+            play(col, row);
+            return aiButtonNumber(col, row);
+        } else if (this.board[col][row] != ' ' && this.roundCount < 9) {
             aiComputer();
         }
         return 0;
     }
 
-    public int aiButtonNumber(int col, int row)
-    {
-        return  (col * 3) + row;
+    public int aiButtonNumber(int col, int row) {
+        return (col * 3) + row;
     }
 }

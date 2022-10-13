@@ -5,21 +5,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import tictactoe.bll.GameState;
 import tictactoe.bll.Utilities;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BaseWindowController implements Initializable {
     @FXML
-    private Button playerVComputer;
-    @FXML
-    private Button scoreBoardAction;
-    @FXML
-    private Button rulesAction;
-    @FXML
-    private Button creatorsAction;
-    @FXML
-    private Button playerVPlayer;
+    private Button playerVComputer,
+            scoreBoardAction,
+            rulesAction,
+            creatorsAction,
+            playerVPlayer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

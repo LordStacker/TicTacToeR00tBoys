@@ -23,8 +23,6 @@ import javafx.scene.layout.GridPane;
 import tictactoe.be.DataStore;
 import tictactoe.be.Player;
 import tictactoe.bll.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 /**
  * @author r00tBoys
@@ -103,13 +101,12 @@ public class TicTacViewController implements Initializable {
                         Button btn = (Button) event.getSource();
                         String xOrO  = "X";
                         btn.setText(xOrO);
-
-                        fetchedButtons.get(game.aiComputer()).setText("O");
+                        Button nextButton =  fetchedButtons.get(game.aiComputer());
+                        nextButton.setText("O");
+                        nextButton.setStyle("-fx-text-fill: red");
                     }
-                   // setPlayer();
                 }
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -122,7 +119,6 @@ public class TicTacViewController implements Initializable {
         Oscore.setText(game.getWonGamesByO());
         setPlayer();
         clearBoard();
-
     }
 
     @Override
@@ -136,9 +132,10 @@ public class TicTacViewController implements Initializable {
         game.resetBoard();
         baseWindowAction.setOnAction(event ->
                 Utilities.changeScene(event, "../gui/views/BaseView.fxml", null, null, true,GameState.NOT_PLAYING));
+        btnNewGame.setOnAction(event -> handleNewGame());
     }
 
-    public List<Button> getListOfButtons(){
+    private List<Button> getListOfButtons(){
         List<Button> buttonList = new ArrayList<>();
 
         for (int i = 0; i < 1; i++) {
@@ -207,5 +204,4 @@ public class TicTacViewController implements Initializable {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
-    
 }

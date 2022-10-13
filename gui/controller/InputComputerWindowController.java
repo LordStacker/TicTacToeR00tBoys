@@ -12,23 +12,19 @@ import java.util.ResourceBundle;
 public class InputComputerWindowController implements Initializable {
 
     @FXML
-    private Button rulesAction;
-    @FXML
-    private Button creatorsAction;
+    private Button rulesAction, creatorsAction, start_game;
     @FXML
     private TextField player_one_name;
-    @FXML
-    private Button start_game;
 
     private final GameState state = GameState.COMPUTER_AI;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         start_game.setOnAction(event ->
-                Utilities.changeScene(event,"../gui/views/TicTacView.fxml",player_one_name.getText(),null,true, state));
+                Utilities.changeScene(event, "../gui/views/TicTacView.fxml", player_one_name.getText(), null, true, state));
         creatorsAction.setOnAction(event ->
-                Utilities.changeScene(event,"../gui/views/CreatorsView.fxml",null,null,false,GameState.NOT_PLAYING));
+                Utilities.changeScene(event, "../gui/views/CreatorsView.fxml", null, null, false, GameState.NOT_PLAYING));
         rulesAction.setOnAction(event ->
-                Utilities.changeScene(event,"../gui/views/RulesView.fxml",null,null,false,GameState.NOT_PLAYING));
+                Utilities.changeScene(event, "../gui/views/RulesView.fxml", null, null, false, GameState.NOT_PLAYING));
     }
 }

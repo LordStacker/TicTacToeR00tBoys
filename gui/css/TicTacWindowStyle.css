@@ -10,7 +10,6 @@ and open the template in the editor.
 
 .root{
     -fx-background-color:#000;
-
 }
 
 #pane {
@@ -19,39 +18,29 @@ and open the template in the editor.
     -fx-background-repeat: stretch;
     -fx-background-position: center;
 }
-
-
-
 .button{
     -fx-background-color:#000;
     -fx-text-fill:#3a68e8;
     -fx-font-family: 'Source Code Pro Black';
     -fx-font-size: 20px;
 }
-
 .button:hover{
      -fx-underline-color: #ff0000;
 }
-
-
-
 .label{
     -fx-text-fill:#3a68e8;
     -fx-font-size: 26px;
     -fx-font-family: 'Source Code Pro Black';
 
 }
-
 .playerNames{
     -fx-font-size: 26px;
 }
-
 .buttonPanel{
     -fx-border-color:#3a68e8;
     -fx-border-width:2;
     -fx-font-size:30px;
 }
-
 .input{
      -fx-background-color: transparent;
     -fx-border-color: #3a68e8;
@@ -59,12 +48,10 @@ and open the template in the editor.
     -fx-text-fill: #008000;
     -fx-text-size: 15px;
 }
-
 .buttonField{
      -fx-border-color:#ffffff;
      -fx-font-size:14px;
 }
-
 .score {
     -fx-font-size:18px;
 }

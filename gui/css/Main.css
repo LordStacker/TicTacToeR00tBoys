@@ -68,11 +68,15 @@ and open the template in the editor.
 }
 
 .input{
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
     -fx-border-color: #3a68e8;
     -fx-border-width: 2;
     -fx-text-fill: white;
     -fx-text-size: 18px;
+}
+.what{
+    -fx-text-size:40px;
+    -fx-text-fill: red;
 }
 
 
