@@ -19,7 +19,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="103.0" prefWidth="398.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Tic Tac Toe">
+            <Label styleClass="mainLabel" text="Tic Tac Toe">
                <font>
                   <Font size="37.0" />
                </font>
@@ -35,12 +35,20 @@
          <children>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="290.0">
                <children>
-                  <TextField fx:id="player_one_name" prefHeight="28.0" prefWidth="159.0" promptText="Input player" />
+                  <Label prefHeight="34.0" prefWidth="26.0" styleClass="mark1" text="X" textFill="RED">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="-20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="player_one_name" prefHeight="29.0" prefWidth="105.0" promptText="Input player" styleClass="input" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="290.0">
                <children>
-                  <Button fx:id="start_game" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Start game !" />
+                  <Button fx:id="start_game" mnemonicParsing="false" prefHeight="40.0" prefWidth="201.0" text="Start game !" />
                </children>
             </HBox>
          </children>
@@ -49,12 +57,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="rulesAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Rules">
+            <Button fx:id="rulesAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" styleClass="borderRules" text="Rules">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="creatorsAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" text="Creators" />
+            <Button fx:id="creatorsAction" mnemonicParsing="false" prefHeight="35.0" prefWidth="123.0" styleClass="borderRules" text="Creators" />
          </children>
       </HBox>
    </bottom>

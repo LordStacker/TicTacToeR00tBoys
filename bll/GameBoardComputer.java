@@ -30,11 +30,6 @@ public class GameBoardComputer implements IGameModel {
     private TicTacViewController controller;
 
     public GameBoardComputer(TicTacViewController controller){
-//        for (int r = 0; r < this.board.length; r++) {
-//            for (int c = 0; c < this.board.length; c++) {
-//                this.board[r][c]=0;
-//            }
-//        }
         this.controller = controller;
     }
 

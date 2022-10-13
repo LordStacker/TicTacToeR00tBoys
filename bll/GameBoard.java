@@ -72,34 +72,6 @@ private TicTacViewController controller;
         }
         return false;
     }
-
-    public void AIcomputer(){
-        Random rand = new Random(); //instance of random class
-
-        int col=rand.nextInt((3));
-        int row=rand.nextInt((3));
-
-
-        if(this.board[col][row] == ' ' && this.roundCount < 9 ){
-            this.player=0;
-            play(col,row);
-        }
-        else if(this.board[col][row] != ' ' && this.roundCount < 9 ){
-            AIcomputer();
-        }
-    }
-
-    public int AIButtonNumber(int col,int row)
-    {
-        int token=0;
-        for (int i = 0; i < col; i++) {
-            for (int j = 0; j < row; j++) {
-                token++;
-            }
-        }
-
-        return token;
-    }
     public boolean isGameOver() {
 
         //Check if there is winning row
@@ -228,13 +200,25 @@ private TicTacViewController controller;
     }
 
 
-    public int aiButtonNumber(int col, int row) {
+    public int aiComputer(){
+        Random rand = new Random(); //instance of random class
+
+        int col=rand.nextInt((3));
+        int row=rand.nextInt((3));
+
+        if(this.board[col][row] == ' ' && this.roundCount < 9 ){
+            this.player=0;
+            play(col,row);
+            return aiButtonNumber(col,row);
+        }
+        else if(this.board[col][row] != ' ' && this.roundCount < 9 ){
+            aiComputer();
+        }
         return 0;
     }
 
-
-    public int aiComputer() {
-        // do nothing
-        return 0;
+    public int aiButtonNumber(int col, int row)
+    {
+        return  (col * 3) + row;
     }
 }

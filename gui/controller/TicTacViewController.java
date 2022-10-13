@@ -51,8 +51,9 @@ public class TicTacViewController implements Initializable {
 
     private String score,
             playerName;
-	
-	private GameState gameState = GameState.COMPUTER_AI;
+
+    private GameState gameState = GameState.COMPUTER_AI;
+
     private final DataStore currPlayer = DataStore.getInstance();
 
     private Player p1,
@@ -102,19 +103,16 @@ public class TicTacViewController implements Initializable {
                         Button btn = (Button) event.getSource();
                         String xOrO  = "X";
                         btn.setText(xOrO);
-                        btn.setStyle("-fx-text-fill: red");
-                        Button btnPredict = fetchedButtons.get(game.aiComputer());
-                        btnPredict.setText("O");
-                        btnPredict.setStyle("-fx-text-fill: blue");
+
+                        fetchedButtons.get(game.aiComputer()).setText("O");
                     }
-                    setPlayer();
+                   // setPlayer();
                 }
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @FXML
@@ -175,19 +173,15 @@ public class TicTacViewController implements Initializable {
             message = winner == 1 ? lblPlayer.getText() + " wins!!!" : lblPlayer2.getText() + " wins!!!";
         }
         if (GameBoard.counterX == GameBoard.MAX_SCORE  || GameBoard.counterY == GameBoard.MAX_SCORE) {
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(message);
             Optional<ButtonType> option = alert.showAndWait();
             if(ButtonType.OK.equals(option.get())){
-              // restart game again
                 sendScoreToTheBoard();
                 handleNewGame();
             }
-
         }
         turnLabel.setText(message);
-
     }
 
     private void clearBoard() {
@@ -209,6 +203,9 @@ public class TicTacViewController implements Initializable {
     public void setNames(String playerOne, String playerTwo) {
         lblPlayer.setText(playerOne + " (X) ");
         lblPlayer2.setText(playerTwo + " (O) ");
+    }
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
     
 }
