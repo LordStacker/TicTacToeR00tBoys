@@ -104,12 +104,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="101.0" prefWidth="145.0">
                            <children>
-                              <Button id="buttonPanel" mnemonicParsing="false" styleClass="buttonField" text="New Game">
+                              <Button id="buttonPanel" fx:id="btnNewGame" mnemonicParsing="false" styleClass="buttonField" text="New Game">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="baseWindowAction" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="30.0" prefWidth="86.0" styleClass="buttonField" text="I give up">
+                              <Button fx:id="baseWindowAction" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" styleClass="buttonField" text="I give up">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
