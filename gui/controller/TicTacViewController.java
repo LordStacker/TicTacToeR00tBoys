@@ -123,7 +123,7 @@ public class TicTacViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(gameState.equals(GameState.PLAYER_VS_PLAYER)) {
+        if(gameState.equals(GameState.COMPUTER_AI)) {
             game = new GameBoard(this);
         } else {
             game = new GameBoardComputer(this);
